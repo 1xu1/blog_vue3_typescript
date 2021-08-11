@@ -9,16 +9,21 @@
           :blog="blogSorted"
           :loading="loading"
         ></BlogList>
-        <!-- <Pagination
+        <Pagination
           :pageNum="page"
           :pages="pageTotal"
           @pageTrans="refresh"
-        ></Pagination> -->
+        ></Pagination>
       </div>
-      <div class="left"></div>
-      <div class="right"></div>
+      <div class="left">
+        <LabelCloudCard @change="refresh" style="width: 250px"></LabelCloudCard>
+        <LatestCommentCard style="width: 250px"></LatestCommentCard>
+      </div>
+      <div class="right">
+        <PersonalCard></PersonalCard>
+      </div>
     </div>
-    <!-- <MusicPlayer songId="503268086"></MusicPlayer> -->
+    <MusicPlayer songId="503268086"></MusicPlayer>
     <Footer></Footer>
   </div>
 </template>
@@ -30,8 +35,21 @@ import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import BlogList from "@/views/Home/BlogList.vue";
 import Pagination from "@/components/Pagination.vue";
+import MusicPlayer from "@/components/MusicPlayer.vue";
+import LabelCloudCard from "./LabelCloudCard.vue";
+import PersonalCard from "./PersonalCard.vue";
+import LatestCommentCard from "./LatestCommentCard.vue";
 @Options({
-  components: { Header, Footer, BlogList, Pagination },
+  components: {
+    Header,
+    Footer,
+    BlogList,
+    Pagination,
+    MusicPlayer,
+    LabelCloudCard,
+    LatestCommentCard,
+    PersonalCard,
+  },
   mounted() {
     if (this.$route.query.page != undefined) {
       this.page = this.$route.query.page;
