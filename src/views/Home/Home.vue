@@ -9,16 +9,16 @@
           :blog="blogSorted"
           :loading="loading"
         ></BlogList>
-        <Pagination
+        <!-- <Pagination
           :pageNum="page"
           :pages="pageTotal"
           @pageTrans="refresh"
-        ></Pagination>
+        ></Pagination> -->
       </div>
       <div class="left"></div>
       <div class="right"></div>
     </div>
-    <MusicPlayer songId="503268086"></MusicPlayer>
+    <!-- <MusicPlayer songId="503268086"></MusicPlayer> -->
     <Footer></Footer>
   </div>
 </template>
@@ -47,9 +47,9 @@ import Pagination from "@/components/Pagination.vue";
 })
 export default class Home extends Vue {
   public page = 1;
-  public limit = 1;
+  public limit = 10;
   public blog = [];
-  public loading = true;
+  public loading = false;
   public pageTotal = 0;
   public blog_label = "";
   //博文列表排序
@@ -74,6 +74,7 @@ export default class Home extends Vue {
         this.blog = res.data.data.list;
         this.pageTotal = res.data.data.pages;
         this.loading = false;
+        console.log(this.loading);
       })
       .catch((err) => {
         console.log(err);

@@ -14,7 +14,7 @@
         @click="goToBlog(item.blog_id)"
       >
         <div class="header">
-          <span class="title not-slected">{{ item.blog_title }}</span>
+          <span class="title not-slected">{{ item?.blog_title }}</span>
         </div>
         <div class="body">
           <div class="subheading not-slected">
@@ -24,24 +24,24 @@
             </div>
             <div class="item">
               <span class="bi bi-person-fill"></span
-              ><span class="tag-content">作者:{{ item.blog_writer }}</span>
+              ><span class="tag-content">作者:{{ item?.blog_writer }}</span>
             </div>
             <div class="item">
               <span class="bi bi-heart-fill"></span
-              ><span class="tag-content">喜欢:{{ item.blog_like }}</span>
+              ><span class="tag-content">喜欢:{{ item?.blog_like }}</span>
             </div>
             <div class="item">
               <span class="bi bi-book-fill"></span
-              ><span class="tag-content">阅读量:{{ item.blog_read }}</span>
+              ><span class="tag-content">阅读量:{{ item?.blog_read }}</span>
             </div>
             <div class="item">
               <span class="bi bi-bookmark-dash-fill"></span
               ><span class="tag-content"
-                >标签:{{ labels(item.blog_label) }}</span
+                >标签:{{ labels(item?.blog_label) }}</span
               >
             </div>
           </div>
-          <p class="not-slected">{{ ellipsis(item.blog_content) }}</p>
+          <p class="not-slected">{{ ellipsis(item?.blog_content) }}</p>
         </div>
       </div>
     </div>
@@ -50,8 +50,9 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import LoadingIcon from "@/components/things/LoadingIcon.vue";
 @Options({
-  components: {},
+  components: { LoadingIcon },
   props: {
     //当前页码
     page: {
