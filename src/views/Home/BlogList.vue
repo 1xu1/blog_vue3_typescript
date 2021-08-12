@@ -11,7 +11,7 @@
         v-for="item in blog"
         :key="item.blog_id"
         class="blog-card"
-        @click="goToBlog(item.blog_id)"
+        @click="jumpToBlog(item.blog_id)"
       >
         <div class="header">
           <span class="title not-slected">{{ item?.blog_title }}</span>
@@ -19,23 +19,23 @@
         <div class="body">
           <div class="subheading not-slected">
             <div class="item">
-              <span class="bi bi-calendar-week-fill"></span>
+              <span class="fas fa-calendar-alt"></span>
               <span v-time="item.blog_time" class="tag-content"></span>
             </div>
             <div class="item">
-              <span class="bi bi-person-fill"></span
+              <span class="fas fa-user-edit"></span
               ><span class="tag-content">作者:{{ item?.blog_writer }}</span>
             </div>
             <div class="item">
-              <span class="bi bi-heart-fill"></span
+              <span class="fas fa-heart"></span
               ><span class="tag-content">喜欢:{{ item?.blog_like }}</span>
             </div>
             <div class="item">
-              <span class="bi bi-book-fill"></span
+              <span class="fas fa-book-reader"></span
               ><span class="tag-content">阅读量:{{ item?.blog_read }}</span>
             </div>
             <div class="item">
-              <span class="bi bi-bookmark-dash-fill"></span
+              <span class="fas fa-bookmark"></span
               ><span class="tag-content"
                 >标签:{{ labels(item?.blog_label) }}</span
               >
@@ -78,7 +78,7 @@ import LoadingIcon from "@/components/things/LoadingIcon.vue";
 })
 export default class Header extends Vue {
   //跳转到博文页面
-  public gotoBlog(id: number): void {
+  public jumpToBlog(id: number | string): void {
     this.$router.push({
       path: "blog",
       query: {
@@ -87,7 +87,7 @@ export default class Header extends Vue {
     });
   }
   //标签格式转化
-  labels(label: string): string {
+  public labels(label: string): string {
     label = label.toString();
     return label.replace(/#/g, " | ");
   }
@@ -123,6 +123,7 @@ export default class Header extends Vue {
   padding: 10px 20px 10px 20px;
   margin-top: 10px;
   background-color: white;
+  cursor: pointer;
 }
 
 .blog-card:hover {

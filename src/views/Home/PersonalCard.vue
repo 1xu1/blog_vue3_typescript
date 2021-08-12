@@ -101,9 +101,7 @@
         <span class="icon-words">Bilibili</span>
       </a>
     </div>
-    <a
-      href="https://github.com/1xu1/MyBLogWebsite-Vue-SpringBoot"
-      target="_blank"
+    <a href="https://github.com/1xu1/blog_vue3_typescript" target="_blank"
       >本站开源地址</a
     >
     <BuyMeCofee></BuyMeCofee>
