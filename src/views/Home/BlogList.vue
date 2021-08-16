@@ -154,6 +154,8 @@ export default class Header extends Vue {
   -khtml-user-select: none;
   /*早期浏览器*/
   user-select: none;
+  overflow: hidden;
+  text-overflow: ellipsis; /* 加省略号 */
 }
 
 .tag-content {

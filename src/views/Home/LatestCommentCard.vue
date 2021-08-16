@@ -22,10 +22,10 @@
 
 <script lang="ts">
 import axios from "axios";
-import CrossLine from "@/components/things/CrossLine.vue";
+import LoadingIcon from "@/components/things/LoadingIcon.vue";
 import { Options, Vue } from "vue-class-component";
 @Options({
-  components: { CrossLine },
+  components: { LoadingIcon },
   mounted() {
     this.getDate();
   },

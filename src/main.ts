@@ -14,7 +14,8 @@ import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
 // fontAwesomeIcon相关
 import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css'
 
-
+//element-plus相关
+import 'element-plus/lib/theme-chalk/index.css'
 
 import Prism from 'prismjs';
 
@@ -26,8 +27,7 @@ const app = createApp(App).use(store).use(router)
 
 // 全局组件引入
 app.use(VMdEditor)
-// app.use(VMdPreviewHtml)
-//import pagination from '@/components/things/pa'
+// import '@/components/things'
 
 //载入自定义指令
 import directives from "@/directives/index"

@@ -1,6 +1,7 @@
 <template>
   <div>
     <Header></Header>
+    <!-- <SolarSystem></SolarSystem> -->
     <div class="container">
       <div class="middle">
         <BlogList
@@ -21,9 +22,10 @@
       </div>
       <div class="right">
         <PersonalCard></PersonalCard>
+        <MusicPlayer songId="503268086"></MusicPlayer>
+        <scroll-to-top></scroll-to-top>
       </div>
     </div>
-    <MusicPlayer songId="503268086"></MusicPlayer>
     <Footer></Footer>
   </div>
 </template>
@@ -39,6 +41,8 @@ import MusicPlayer from "@/components/MusicPlayer.vue";
 import LabelCloudCard from "./LabelCloudCard.vue";
 import PersonalCard from "./PersonalCard.vue";
 import LatestCommentCard from "./LatestCommentCard.vue";
+import ScrollToTop from "@/components/ScrollToTop.vue";
+// import SolarSystem from "@/components/SolarSystem.vue";
 @Options({
   components: {
     Header,
@@ -49,6 +53,8 @@ import LatestCommentCard from "./LatestCommentCard.vue";
     LabelCloudCard,
     LatestCommentCard,
     PersonalCard,
+    ScrollToTop,
+    // SolarSystem,
   },
   mounted() {
     if (this.$route.query.page != undefined) {
@@ -92,7 +98,6 @@ export default class Home extends Vue {
         this.blog = res.data.data.list;
         this.pageTotal = res.data.data.pages;
         this.loading = false;
-        console.log(this.loading);
       })
       .catch((err) => {
         console.log(err);
@@ -105,6 +110,11 @@ export default class Home extends Vue {
     if (!blog_label != null) this.blog_label = blog_label;
     this.loading = true;
     this.getData();
+    window.scrollTo({
+      left: 0,
+      top: 0,
+      behavior: "smooth",
+    });
   }
 }
 </script>
