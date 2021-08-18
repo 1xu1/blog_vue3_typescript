@@ -15,26 +15,28 @@
     <!--登陆弹框-->
     <el-dialog title="登陆弹框" v-model="loginVisible">
       <el-form ref="form" :model="form" label-width="80px" label-position="top">
-        <el-form-item label="用户名">
+        <el-form-item label="用户名" prop="login_id">
           <el-input
             placeholder="请输入用户名"
-            v-model="form.login_id"
-          ></el-input>
+            clearable
+            v-model="login_id"
+            @change="change()"
+          />
         </el-form-item>
-        <el-form-item label="密码">
+        <el-form-item label="密码" prop="login_pwd">
           <el-input
             placeholder="请输入密码"
-            v-model="form.login_pwd"
+            v-model="login_pwd"
+            clearable
             show-password
+            @change="change()"
           ></el-input>
         </el-form-item>
       </el-form>
       <template #footer>
         <div class="dialog-footer">
           <el-button @click="loginVisible = false">取 消</el-button>
-          <el-button
-            type="primary"
-            @click="login(form.login_id, form.login_pwd)"
+          <el-button type="primary" @click="login(login_id, login_pwd)"
             >确 定</el-button
           >
         </div>
@@ -68,12 +70,15 @@ export default class Header extends Vue {
   public login_stat = false;
   public loginVisible = false;
   public form = {
-    login_id: "abc",
-    login_pwd: "abc",
+    login_id: "test",
+    login_pwd: "test",
   };
+  public login_id = "";
+  public login_pwd = "";
   public login(id: string, pwd: string): void {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     let _this = this;
+    console.log(this.form);
     if (sessionStorage.login_stat) {
       this.loginSucceed();
     }
@@ -86,7 +91,7 @@ export default class Header extends Vue {
       })
       .then((res) => {
         console.log(res);
-        if (res.data) {
+        if (res.data.data !== null && res.data.rspCode == "200") {
           sessionStorage.login_stat = res.data.data;
           this.loginSucceed();
         } else _this.loginFail();
@@ -102,6 +107,9 @@ export default class Header extends Vue {
   }
   public loginFail(): void {
     ElMessage.error("登录失败");
+  }
+  public change(): void {
+    this.$forceUpdate();
   }
 }
 </script>

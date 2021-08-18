@@ -10,7 +10,10 @@
           class="box-shadow"
           style="padding-bottom: 10px; background-color: #fff"
         >
-          <BlogContent :text="blog.blog_content"></BlogContent>
+          <BlogContent
+            :text="blog.blog_content"
+            :loading="loading"
+          ></BlogContent>
           <div style="position: relative; left: 90%">
             <LikeButton
               @clickLike="clickLike()"

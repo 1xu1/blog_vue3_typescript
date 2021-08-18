@@ -1,5 +1,5 @@
 <template>
-  <!-- <Header></Header> -->
+  <Header></Header>
   <el-container>
     <el-aside style="width: 200px">
       <side-bar></side-bar>
@@ -7,7 +7,7 @@
     <el-main><router-view></router-view></el-main>
   </el-container>
 
-  <!-- <Footer></Footer> -->
+  <Footer></Footer>
 </template>
 
 <script lang="ts">

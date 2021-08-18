@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="row"><el-input></el-input><el-button>筛选</el-button></div>
+    <div class="row">
+      <el-input></el-input><el-button>筛选</el-button
+      ><el-button @click="addBlog()">新增博文</el-button>
+    </div>
     <br />
     <el-table :data="blog">
       <el-table-column prop="blog_id" label="ID"> </el-table-column>
@@ -38,7 +41,11 @@
         </template>
       </el-table-column>
     </el-table>
-    <PagesButton :pageNum="page" :pages="pageTotal" @change=""></PagesButton>
+    <PagesButton
+      :pageNum="page"
+      :pages="pageTotal"
+      @change="getData()"
+    ></PagesButton>
   </div>
 </template>
 
@@ -130,6 +137,32 @@ export default class list extends Vue {
       .catch((err) => {
         console.log(err);
         ElMessage.error("调整失败");
+      });
+  }
+  //新增博文
+  addBlog(): void {
+    axios
+      .post(
+        "/api/admin/addBlog",
+        {
+          blog_content: "",
+          blog_title: "",
+          blog_label: "",
+          blog_writer: "徐宇翔",
+        },
+        {
+          headers: {
+            Token: sessionStorage.login_stat,
+          },
+        }
+      )
+      .then((res) => {
+        ElMessage.success("新增成功");
+        location.replace("/blogEditor?blog_id=" + res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        ElMessage.error("新增失败");
       });
   }
 }

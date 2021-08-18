@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 <template>
   <div class="box-shadow comment">
     <!--评论回复功能块-->
@@ -24,7 +25,7 @@
           maxlength="250"
           v-model="commenter_content"
         ></textarea>
-        <button class="button_reply" v-on:click="addComment">回复</button>
+        <button class="button_reply" @click="debounce(addComment)">回复</button>
       </div>
     </div>
     <!--评论列表-->
@@ -60,32 +61,34 @@
 </template>
 
 <script lang="ts">
-import { Options, prop, Vue } from "vue-class-component";
+import { Options, Vue } from "vue-class-component";
 import axios from "axios";
+import { ElMessage } from "element-plus";
+import { IsURL, hasHttp } from "@/assets/js/utils";
 @Options({
-  components: {},
-  props: {
-    blog_id: {
-      type: String,
-      default: "0",
-    },
+  components: { ElMessage },
+  mounted() {
+    this.blog_id = this.$route.query.blog_id;
+    this.getComments();
   },
 })
 export default class Comment extends Vue {
-  public comments_content = null;
+  public comments_content: { floor: number }[] = [];
   public commenter = "";
   public commenter_link = "";
   public commenter_content = "";
   public loading = true;
   public adding = false;
-  public comment_date = null;
-  public blog_id = "0";
+  public comment_date = new Date();
+  public blog_id!: string;
   //获取评论
   public getComments(): void {
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    const blog_id = this.blog_id;
     axios
       .get("/api/getAllComment", {
         params: {
-          blog_id: this.blog_id,
+          blog_id: blog_id,
         },
       })
       .then((res) => {
@@ -93,6 +96,66 @@ export default class Comment extends Vue {
         this.loading = false;
       })
       .catch((err) => {
+        console.log(err);
+      });
+  }
+  public timer: number | null | undefined = null;
+  //防抖
+  // eslint-disable-next-line no-undef
+  debounce(fn: TimerHandler, delay: number | undefined): void {
+    if (this.timer) {
+      ElMessage.warning("请不要频繁操作");
+      clearTimeout(this.timer);
+    }
+    this.timer = setTimeout(fn, delay);
+  }
+
+  //增加评论
+  public addComment(): void {
+    let cur_comment = 0;
+    //获取当前最大楼数
+    this.comments_content.forEach((item) => {
+      if (item.floor >= cur_comment) {
+        cur_comment = item.floor + 1;
+      }
+    });
+    //验证输入是否正确
+    if (this.commenter == "" || this.commenter == null) {
+      ElMessage.error("用户名输入有问题");
+      return;
+    }
+    let link = this.commenter_link;
+    if (link == "" || link == null) {
+      link = "";
+    } else if (!IsURL(link)) {
+      ElMessage.error("网址输入有错误");
+      return;
+    } else {
+      link = hasHttp(link);
+    }
+    if (this.commenter_content == "" || this.commenter_content == null) {
+      ElMessage.error("回复内容有问题");
+      return;
+    }
+    this.commenter_link = link;
+    this.comment_date = new Date();
+
+    axios
+      .post("/api/addComment", {
+        comment_user_name: this.commenter,
+        comment_link: this.commenter_link,
+        comment_content: this.commenter_content,
+        floor: cur_comment,
+        blog_id: this.blog_id,
+      })
+      .then((res) => {
+        const new_item = res.data.data;
+        this.comments_content.push(new_item);
+        sessionStorage.commenter = this.commenter;
+        sessionStorage.comment_link = this.commenter_link;
+      })
+      .catch((err) => {
+        ElMessage.error("诶呀，评论增加失败");
         console.log(err);
       });
   }

@@ -48,7 +48,7 @@ export default class BlogEditor extends Vue {
   public blog = {
     blog_id: null,
     blog_title: null,
-    blog_content: null,
+    blog_content: "",
     blog_like: null,
     blog_label: null,
     blog_time: null,
@@ -127,12 +127,8 @@ export default class BlogEditor extends Vue {
         }
       )
       .then((res) => {
-        if (res.data == 0) {
-          ElMessage.error("新增失败");
-        } else {
-          ElMessage.success("新增成功");
-          location.replace("./blogEditor?blog_id=" + res.data);
-        }
+        ElMessage.success("新增成功");
+        location.replace("/blogEditor?blog_id=" + res.data);
       })
       .catch((err) => {
         console.log(err);

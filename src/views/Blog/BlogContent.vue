@@ -23,6 +23,10 @@ import { Options, Vue } from "vue-class-component";
     text: {
       String,
     },
+    loading: {
+      type: Boolean,
+      default: true,
+    },
   },
 })
 export default class BlogContent extends Vue {}
