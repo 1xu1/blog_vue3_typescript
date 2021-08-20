@@ -36,3 +36,6 @@ import directives from "@/directives/index"
 directives(app)
 
 app.mount('#app')
+
+// axios默认url配置
+axios.defaults.baseURL = "http://42.192.211.76:8083"

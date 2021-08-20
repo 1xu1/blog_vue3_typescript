@@ -57,15 +57,9 @@ import ScrollToTop from "@/components/ScrollToTop.vue";
     // SolarSystem,
   },
   mounted() {
-    if (this.$route.query.page != undefined) {
-      this.page = this.$route.query.page;
-    }
-    if (this.$route.query.limit != undefined) {
-      this.limit = this.$route.query.limit;
-    }
-    if (this.$route.query.label != undefined) {
-      this.blog_label = this.$route.query.label;
-    }
+    this.page = this.$route.query.page;
+    this.limit = this.$route.query.limit;
+    this.blog_label = this.$route.query.label;
     this.getData();
   },
 })
@@ -78,7 +72,7 @@ export default class Home extends Vue {
   public blog_label = "";
   //博文列表排序
   public get blogSorted(): any {
-    return this.blog.sort((a: any, b: any) => {
+    return this.blog.sort((a: { blog_time: Date }, b: { blog_time: Date }) => {
       let t1 = new Date(a.blog_time).getTime();
       let t2 = new Date(b.blog_time).getTime();
       return t2 - t1;

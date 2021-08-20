@@ -1,5 +1,6 @@
 <template>
   <main id="todolist" ref="todoItem">
+    <span class="fa fa-refresh refesh" aria-hidden="true"></span>
     <h1>
       待办事项
       <span>毫不留情, 一次一件事.</span>
@@ -88,11 +89,8 @@ import { ElCheckbox } from "element-plus";
 export default class Header extends Vue {
   public newitem = "";
   public sortByStatus = false;
-  public todo = [
-    { id: 1, label: "Learn VueJs", done: true },
-    { id: 2, label: "Code a todo list", done: false },
-    { id: 3, label: "Learn something else", done: false },
-  ];
+  public todo = [{ id: 1, label: "开始使用toDoList", done: true }];
+  public position = { x: 0, y: 0 };
 
   //增加事项
   public addItem(): void {
@@ -127,6 +125,10 @@ export default class Header extends Vue {
 
   //增加拖拽效果
   public dragable(el: HTMLElement): void {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    let _this = this;
+    let tX = _this.position.x;
+    let tY = _this.position.y;
     //获取拖拽实验对象
     //在该对象上绑定鼠标点击事件
     el.onmousedown = (e) => {
@@ -138,8 +140,8 @@ export default class Header extends Vue {
       document.onmousemove = function (e) {
         if (parent == null) return;
         //计算需要移动的距离
-        let tX = e.clientX - disX;
-        let tY = e.clientY - disY;
+        tX = e.clientX - disX;
+        tY = e.clientY - disY;
         //移动当前元素
         if (tX >= 0 && tX <= parent.offsetWidth - el.offsetWidth) {
           el.style.left = tX + "px";
@@ -152,6 +154,8 @@ export default class Header extends Vue {
       document.onmouseup = function (e) {
         document.onmousemove = null;
         document.onmouseup = null;
+        _this.position.x = tX;
+        _this.position.y = tX;
       };
     };
   }
@@ -330,5 +334,12 @@ form button {
 }
 .check-box {
   color: #fff;
+}
+.refesh {
+  color: #fff;
+  position: absolute;
+  cursor: pointer;
+  right: 10px;
+  top: 10px;
 }
 </style>
