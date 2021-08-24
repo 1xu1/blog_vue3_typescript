@@ -1,13 +1,13 @@
 <template>
   <div class="head-contanier">
-    <img src="@/assets/img/head.png" class="head-icon" />
+    <img src="@/assets/img/head.jpg" class="head-icon" />
     <span class="head-title">盐巴鱼的博客</span>
     <nav class="head-right">
       <router-link class="head-item" to="/home">个人博文</router-link>
       <router-link class="head-item" to="/home?page=1&label=更新日志"
         >更新日志</router-link
       >
-      <router-link class="head-item" to="/">资源分享</router-link>
+      <router-link class="head-item" to="/Sharing">资源分享</router-link>
       <router-link class="head-item" to="/toDoList">ToDo</router-link>
     </nav>
     <el-button @click="loginVisible = true" class="head-button">登录</el-button>

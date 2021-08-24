@@ -131,13 +131,16 @@ a {
 .personal-card {
   margin-top: 20px;
   margin-left: 20px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #ebeef5;
   padding: 10px 10px 10px 10px;
   background: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.personal-card:hover {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 
 .personal-card > .head-icon {

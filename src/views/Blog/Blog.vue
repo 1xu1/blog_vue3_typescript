@@ -5,11 +5,8 @@
       <BlogHead :blog_id="blog_id" :blog="blog" :loading="loading"></BlogHead>
     </div>
     <div class="container">
-      <div class="content_block">
-        <div
-          class="box-shadow"
-          style="padding-bottom: 10px; background-color: #fff"
-        >
+      <div>
+        <div class="content_block">
           <BlogContent
             :text="blog.blog_content"
             :loading="loading"
@@ -22,7 +19,10 @@
             ></LikeButton>
           </div>
         </div>
-        <Comment :blog_id="blog_id" style="background-color: #fff"></Comment>
+        <Comment
+          :blog_id="blog_id"
+          style="background-color: #fff; margin-top: 10px"
+        ></Comment>
       </div>
     </div>
     <Footer></Footer>
@@ -97,9 +97,6 @@ export default class Blog extends Vue {
 </script>
 <style scoped>
 @import url("~@/assets/css/utils.css");
-.box-shadow {
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-}
 .container {
   display: flex;
   justify-content: center;
@@ -109,5 +106,9 @@ export default class Blog extends Vue {
 }
 .content_block {
   width: 800px;
+  padding-bottom: 10px;
+  background-color: #fff;
+  border: 1px solid #ebeef5;
+  position: relative;
 }
 </style>

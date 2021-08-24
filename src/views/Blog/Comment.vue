@@ -235,6 +235,6 @@ export default class Comment extends Vue {
 }
 
 .box-shadow {
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #ebeef5;
 }
 </style>

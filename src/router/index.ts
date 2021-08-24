@@ -43,7 +43,14 @@ const routes: Array<RouteRecordRaw> = [
       title: '博文编辑'
     }
   },
-
+  {
+    path: '/Sharing',
+    name: 'Sharing',
+    component: () => import("@/views/Sharing/index.vue"),
+    meta: {
+      title: '资源分享'
+    }
+  },
   {
     path: '/BackStage',
     name: 'BackStage',

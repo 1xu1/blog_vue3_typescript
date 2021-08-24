@@ -96,9 +96,12 @@ a {
 .label-cloud-card {
   margin-top: 20px;
   margin-left: 20px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #ebeef5;
   padding: 10px 10px 10px 10px;
   background: white;
+}
+.label-cloud-card:hover {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 
 .label-button {
