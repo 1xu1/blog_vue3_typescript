@@ -62,6 +62,14 @@ import ScrollToTop from "@/components/ScrollToTop.vue";
     this.blog_label = this.$route.query.label;
     this.getData();
   },
+  watch: {
+    $route(to, from) {
+      this.page = this.$route.query.page;
+      this.limit = this.$route.query.limit;
+      this.blog_label = this.$route.query.label;
+      this.getData();
+    },
+  },
 })
 export default class Home extends Vue {
   public page = 1;

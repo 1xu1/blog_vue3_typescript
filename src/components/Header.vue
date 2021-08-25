@@ -103,7 +103,7 @@ export default class Header extends Vue {
   }
   public loginSucceed(): void {
     ElMessage.success("登录成功");
-    this.$router.push("/BackStage");
+    this.$router.push("/BackStage/BlogList");
   }
   public loginFail(): void {
     ElMessage.error("登录失败");

@@ -8,16 +8,10 @@
       <input type="text" v-model="blog.blog_label" />
       <button @click="save()">保存</button>
       <button @click="addBlog()">新建</button>
-      <button
-        v-show="blog.blog_visibility == 0"
-        @click="editVis(blog.blog_id, 1)"
-      >
+      <button v-show="blog.blog_visibility == 0" @click="editVis(1)">
         发布
       </button>
-      <button
-        v-show="blog.blog_visibility == 1"
-        @click="editVis(blog.blog_id, 0)"
-      >
+      <button v-show="blog.blog_visibility == 1" @click="editVis(0)">
         隐藏
       </button>
       <button @click="pushBack()">返回</button>
@@ -54,7 +48,7 @@ export default class BlogEditor extends Vue {
     blog_time: null,
     blog_read: null,
     blog_writer: null,
-    blog_visibility: null,
+    blog_visibility: 0,
     blog_create_time: null,
   };
   //返回
@@ -102,6 +96,7 @@ export default class BlogEditor extends Vue {
         }
       )
       .then((res) => {
+        this.blog.blog_visibility = vis;
         ElMessage.success("调整成功");
       })
       .catch((err) => {
