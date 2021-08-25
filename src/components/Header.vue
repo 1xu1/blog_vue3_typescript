@@ -78,7 +78,6 @@ export default class Header extends Vue {
   public login(id: string, pwd: string): void {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     let _this = this;
-    console.log(this.form);
     if (sessionStorage.login_stat) {
       this.loginSucceed();
     }
@@ -90,7 +89,6 @@ export default class Header extends Vue {
         },
       })
       .then((res) => {
-        console.log(res);
         if (res.data.data !== null && res.data.rspCode == "200") {
           sessionStorage.login_stat = res.data.data;
           this.loginSucceed();

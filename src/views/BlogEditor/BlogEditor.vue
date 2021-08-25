@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header></Header>
     <div class="tool-bar">
       <span>博文标题</span>
       <input v-model="blog.blog_title" />
@@ -16,19 +15,20 @@
       </button>
       <button @click="pushBack()">返回</button>
     </div>
-    <v-md-editor v-model="blog.blog_content" @save="save()"></v-md-editor>
-    <Footer></Footer>
+    <v-md-editor
+      v-model="blog.blog_content"
+      @save="save()"
+      :height="vmHeight"
+    ></v-md-editor>
   </div>
 </template>
 
 <script lang="ts">
 import axios from "axios";
-import Footer from "@/components/Footer.vue";
-import Header from "@/components/Header.vue";
 import { Options, Vue } from "vue-class-component";
 import { ElMessage } from "element-plus";
 @Options({
-  components: { Footer, Header },
+  components: {},
   mounted() {
     if (!sessionStorage.login_stat) {
       alert("登录状态异常，跳转回首页！");
@@ -36,6 +36,8 @@ import { ElMessage } from "element-plus";
     } else {
       this.getData();
     }
+    // 获取窗口大小，自适应vm编辑器高度
+    this.vmHeight = window.innerHeight - 50 + "px";
   },
 })
 export default class BlogEditor extends Vue {
@@ -51,6 +53,7 @@ export default class BlogEditor extends Vue {
     blog_visibility: 0,
     blog_create_time: null,
   };
+  public vmHeight = "";
   //返回
   pushBack(): void {
     this.$router.go(-1);

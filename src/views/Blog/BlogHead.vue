@@ -11,17 +11,26 @@
         {{ blog.blog_title }}
       </h1>
       <div class="info_row">
-        <span v-time="blog.blog_time" class="blog_info bi bi-stopwatch-fill">
-        </span>
-        <span class="blog_info bi bi-person-fill"
-          >作者：{{ blog.blog_writer }}</span
-        >
-        <span class="blog_info bi bi-heart-fill"
-          >喜欢：{{ blog.blog_like }}</span
-        >
-        <span class="blog_info bi bi-book-fill"
-          >阅读量：{{ blog.blog_read }}</span
-        >
+        <div class="blog_info">
+          <span class="fas fa-calendar-alt"></span>
+          <span v-time="blog.blog_time" class="tag-content"></span>
+        </div>
+        <div class="blog_info">
+          <span class="fas fa-user-edit"></span
+          ><span class="tag-content">作者:{{ blog?.blog_writer }}</span>
+        </div>
+        <div class="blog_info">
+          <span class="fas fa-heart"></span
+          ><span class="tag-content">喜欢:{{ blog?.blog_like }}</span>
+        </div>
+        <div class="blog_info">
+          <span class="fas fa-book-reader"></span
+          ><span class="tag-content">阅读量:{{ blog?.blog_read }}</span>
+        </div>
+        <div class="blog_info">
+          <span class="fas fa-bookmark"></span
+          ><span class="tag-content">标签:{{ labels(blog?.blog_label) }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -47,7 +56,13 @@ import { Options, Vue } from "vue-class-component";
     },
   },
 })
-export default class BlogContent extends Vue {}
+export default class BlogContent extends Vue {
+  //标签格式转化
+  public labels(label: string): string {
+    label = label.toString();
+    return label.replace(/#/g, " | ");
+  }
+}
 </script>
 <style scoped>
 @import url("~@/assets/css/utils.css");
@@ -95,5 +110,8 @@ export default class BlogContent extends Vue {}
   justify-content: center;
   align-items: center;
   height: 400px;
+}
+.tag-content {
+  margin: auto 5px;
 }
 </style>
