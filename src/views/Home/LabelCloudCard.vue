@@ -6,7 +6,9 @@
       </div>
     </div>
     <div v-else>
-      <p>标签云</p>
+      <p style="margin-right: 5px; font-size: 20px">
+        <span class="fas fa-bookmark"></span> <span>标签云</span>
+      </p>
       <div class="label-row">
         <a
           :id="index"
@@ -16,7 +18,10 @@
           class="label-button"
         >
           <span>{{ value[0] }}</span>
-          <span class="label-num">{{ value[1] }}</span>
+          <span
+            :class="seletedIndex == index ? 'label-num-selected' : 'label-num'"
+            >{{ value[1] }}</span
+          >
         </a>
       </div>
     </div>
@@ -35,9 +40,11 @@ import axios from "axios";
   },
 })
 export default class Header extends Vue {
+  /* eslint-disable @typescript-eslint/no-non-null-assertion */
   public labels = new Map();
   public loading = true;
   public slected: number[] = [];
+  public seletedIndex = -1;
   public getDate(): void {
     axios
       .get("/api/getBlogLabels")
@@ -60,15 +67,19 @@ export default class Header extends Vue {
     let slected = this.slected;
     let tmp: number | undefined = 0;
     if (!slected.includes(index)) {
-      if ((tmp = slected.pop()) != undefined)
+      if ((tmp = slected.pop()) != undefined) {
         document.getElementById(tmp.toString())!.style.backgroundColor =
           "#FFFFFF";
+        document.getElementById(tmp.toString())!.style.color = "#000000";
+      }
       document.getElementById(index.toString())!.style.backgroundColor =
-        "#BBDEFB";
+        "#1976d2";
+      document.getElementById(index.toString())!.style.color = "#ffffff";
       slected.push(index);
     } else {
       document.getElementById(index.toString())!.style.backgroundColor =
         "#FFFFFF";
+      document.getElementById(index.toString())!.style.color = "#000000";
       slected.splice(index, 1);
       label = "";
     }
@@ -77,6 +88,7 @@ export default class Header extends Vue {
     let limit = null;
     this.$emit("change", page, limit, label);
     this.slected = slected;
+    this.seletedIndex = slected[0];
   }
 }
 </script>
@@ -97,7 +109,7 @@ a {
   margin-top: 20px;
   margin-left: 20px;
   border: 1px solid #ebeef5;
-  padding: 10px 10px 10px 10px;
+  padding: 10px 10px;
   background: white;
 }
 .label-cloud-card:hover {
@@ -107,29 +119,38 @@ a {
 .label-button {
   font-size: 12px;
   border: 1px solid #29b6f6;
-  border-radius: 10px;
+  border-radius: 4px;
   padding-bottom: 3px;
   padding-left: 10px;
-  margin-bottom: 5px;
-  margin-right: 2px;
+  margin: 5px 2px;
   user-select: none;
   font-weight: 400;
+  cursor: pointer;
 }
 
 .label-button:hover {
   transition: all 0.4s;
-  background: #b3e5fc;
+  background: #1976d2;
+  color: #fff;
 }
 
 .label-button-selected {
-  background: #b3e5fc;
+  background: #1976d2;
+  color: #fff;
 }
 
 .label-num {
   font-weight: 600;
   margin-right: 5px;
   margin-left: 3px;
-  color: #0277bd !important;
+  color: #0277bd;
+}
+
+.label-num-selected {
+  font-weight: 600;
+  margin-right: 5px;
+  margin-left: 3px;
+  color: #ffffff;
 }
 
 .label-row {

@@ -1,9 +1,4 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-//引入页面级组件
-import Home from '@/views/Home/Home.vue'
-import Blog from '@/views/Blog/Blog.vue'
-import ToDoList from '@/views/ToDoList/index.vue'
-import BackStage from '@/views/BackStage/index.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -13,7 +8,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/Home',
     name: 'Home',
-    component: Home,
+    component: () => import("@/views/Home/Home.vue"),
     meta: {
       title: '博客首页'
     }
@@ -21,7 +16,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/Blog',
     name: 'Blog',
-    component: Blog,
+    component: () => import("@/views/Blog/Blog.vue"),
     meta: {
       title: '博文'
     }
@@ -30,7 +25,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/ToDoList',
     name: 'ToDoList',
-    component: ToDoList,
+    component: () => import('@/views/ToDoList/index.vue'),
     meta: {
       title: 'ToDo列表'
     }
@@ -54,7 +49,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/BackStage',
     name: 'BackStage',
-    component: BackStage,
+    component: () => import('@/views/BackStage/index.vue'),
     meta: {
       title: '博客管理后台'
     },

@@ -27,8 +27,17 @@
 import axios from "axios";
 import { Options, Vue } from "vue-class-component";
 import { ElMessage } from "element-plus";
+// VMdEditor相关
+import VMdEditor from "@kangc/v-md-editor";
+import "@kangc/v-md-editor/lib/style/base-editor.css";
+import vuepressTheme from "@kangc/v-md-editor/lib/theme/vuepress.js";
+import "@kangc/v-md-editor/lib/theme/style/vuepress.css";
+import Prism from "prismjs";
+VMdEditor.use(vuepressTheme, {
+  Prism,
+});
 @Options({
-  components: {},
+  components: { VMdEditor },
   mounted() {
     if (!sessionStorage.login_stat) {
       alert("登录状态异常，跳转回首页！");

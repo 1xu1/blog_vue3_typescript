@@ -40,7 +40,8 @@
       <!--渲染评论头部信息-->
       <div class="row" style="align-items: center">
         <div style="margin-left: 10px">#{{ item.floor }}</div>
-        <img src="@/assets/img/default_head.png" class="head_icon" alt="..." />
+        <!-- <img src="@/assets/img/default_head.png" class="head_icon" alt="..." /> -->
+        <span class="fas fa-user-circle head_icon"></span>
         <span class="commenter_name"> {{ item.comment_user_name }}</span>
         <span class="comment_sub" v-time="item.comment_time"></span>
         <span class="comment_sub">赞{{ item.comment_like }}</span>
@@ -226,8 +227,10 @@ export default class Comment extends Vue {
   position: relative;
   width: 40px;
   height: 40px;
+  font-size: 40px;
   border-radius: 100%;
   margin: 5px 15px 5px 15px;
+  color: #757575;
 }
 
 .subheading {

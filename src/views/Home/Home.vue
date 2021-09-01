@@ -1,7 +1,6 @@
 <template>
   <div>
     <Header></Header>
-    <!-- <SolarSystem></SolarSystem> -->
     <div class="container">
       <div class="middle">
         <BlogList
@@ -42,7 +41,6 @@ import LabelCloudCard from "./LabelCloudCard.vue";
 import PersonalCard from "./PersonalCard.vue";
 import LatestCommentCard from "./LatestCommentCard.vue";
 import ScrollToTop from "@/components/ScrollToTop.vue";
-// import SolarSystem from "@/components/SolarSystem.vue";
 @Options({
   components: {
     Header,

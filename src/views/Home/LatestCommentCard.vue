@@ -6,7 +6,9 @@
       </div>
     </div>
     <div v-else style="width: 250px">
-      <p>最新评论：</p>
+      <p style="margin-right: 5px; font-size: 20px">
+        <span class="fas fa-comment"></span> 最新评论：
+      </p>
       <div :key="item" v-for="item in comments" class="block">
         <div class="user">{{ item.comment_user_name }} ：</div>
         <a
@@ -66,8 +68,11 @@ a {
 }
 
 .block {
+  border: 1px solid #ebeef5;
+  padding: 10px;
   margin: 10px 0 0 10px;
   min-height: 40px;
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
 }
 
 .block:hover {
@@ -93,7 +98,7 @@ a {
   margin-top: 20px;
   margin-left: 20px;
   border: 1px solid #ebeef5;
-  padding: 5px 5px 5px 5px;
+  padding: 10px 10px;
   background: white;
   display: flex;
   flex-direction: column;

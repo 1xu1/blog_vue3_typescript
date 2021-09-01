@@ -41,7 +41,7 @@
               >
             </div>
           </div>
-          <p class="not-slected">{{ ellipsis(item?.blog_content) }}</p>
+          <!-- <p class="not-slected">{{ ellipsis(item?.blog_content) }}</p> -->
         </div>
       </div>
     </div>
@@ -120,7 +120,7 @@ export default class Header extends Vue {
 
 .blog-card {
   border: 1px solid #ebeef5;
-  padding: 10px 20px 10px 20px;
+  padding: 20px 10px;
   margin-top: 10px;
   background-color: white;
   cursor: pointer;

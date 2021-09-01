@@ -5,28 +5,18 @@ import router from "./router";
 import store from "./store";
 import axios from 'axios';
 
-// VMdEditor相关
-import VMdEditor from '@kangc/v-md-editor';
-import '@kangc/v-md-editor/lib/style/base-editor.css';
-import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js';
-import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
+
 
 // fontAwesomeIcon相关
 import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css'
 
 //element-plus相关
-import 'element-plus/lib/theme-chalk/index.css'
-
-import Prism from 'prismjs';
-
-VMdEditor.use(vuepressTheme, {
-    Prism,
-});
+// import 'element-plus/lib/theme-chalk/index.css'
 
 const app = createApp(App).use(store).use(router)
 
 // 全局组件引入
-app.use(VMdEditor)
+// app.use(VMdEditor)
 // import '@/components/things'
 
 //载入自定义指令
@@ -39,3 +29,11 @@ app.mount('#app')
 
 // axios默认url配置
 axios.defaults.baseURL = "http://42.192.211.76:8083"
+
+router.beforeEach((to, from, next) => {
+    /* 路由发生变化修改页面title */
+    if (typeof to.meta.title == "string") {
+        document.title = to.meta.title
+    }
+    next()
+})

@@ -1,6 +1,6 @@
 <template>
-  <div @click="toTop()">
-    <span class="fas fa-arrow-up fa-2x item"></span>
+  <div @click="toTop()" class="item">
+    <span class="fas fa-arrow-alt-circle-up"></span>
   </div>
 </template>
 
@@ -27,5 +27,6 @@ export default class ScrollToTop extends Vue {
   right: 220px;
   bottom: 130px;
   z-index: 99;
+  font-size: 35px;
 }
 </style>

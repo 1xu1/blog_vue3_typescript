@@ -8,7 +8,7 @@
     </div>
     <!--博文内容-->
     <div v-else>
-      <v-md-editor v-model="text" mode="preview"></v-md-editor>
+      <v-md-preview :text="text" mode="preview"></v-md-preview>
     </div>
   </div>
 </template>
@@ -17,8 +17,17 @@
 import LikeButton from "@/components/LikeButton.vue";
 import LoadingIcon from "@/components/things/LoadingIcon.vue";
 import { Options, Vue } from "vue-class-component";
+// VMdEditor相关
+import VMdPreview from "@kangc/v-md-editor/lib/preview";
+import "@kangc/v-md-editor/lib/style/preview.css";
+import vuepressTheme from "@kangc/v-md-editor/lib/theme/vuepress.js";
+import "@kangc/v-md-editor/lib/theme/style/vuepress.css";
+import Prism from "prismjs";
+VMdPreview.use(vuepressTheme, {
+  Prism,
+});
 @Options({
-  components: { LikeButton, LoadingIcon },
+  components: { LikeButton, LoadingIcon, VMdPreview },
   props: {
     text: {
       String,

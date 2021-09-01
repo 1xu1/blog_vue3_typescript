@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require("path");
 
 function resolve(dir) {
@@ -11,9 +12,13 @@ module.exports = {
       .set("@", resolve("src"))
       .set("assets", resolve("src/assets"))
       .set("pages", resolve("src/pages"));
+    config
+      .plugin("webpack-bundle-analyzer")
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      .use(require("webpack-bundle-analyzer").BundleAnalyzerPlugin);
   },
   publicPath: "/", //这个必须，引入静态资源需要从根路径引入，否则会找不到静态资源
-  //代理配置
+  //生产环境配置
   devServer: {
     open: true, // 告诉 dev-server 在服务器启动后打开浏览器。 将其设置为 true 以打开默认浏览器
     hotOnly: true, // 启用热模块替换（请参见 devServer.hot ），而无需页面刷新作为构建失败时的回退
@@ -29,4 +34,5 @@ module.exports = {
       index: "/index.html", //与output的publicPath
     },
   },
+  productionSourceMap: false,
 };
