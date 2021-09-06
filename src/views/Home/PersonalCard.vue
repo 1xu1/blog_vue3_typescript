@@ -117,10 +117,7 @@ import { Options, Vue } from "vue-class-component";
 })
 export default class Header extends Vue {}
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
-@import url(~@/assets/css/utils.css);
-
+<style lang="scss" scoped>
 a {
   cursor: pointer;
   color: #007bff;

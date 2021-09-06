@@ -19,8 +19,7 @@ import { Options, Vue } from "vue-class-component";
 })
 export default class Header extends Vue {}
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
+<style lang="scss" scoped>
 .footer-line {
   margin-top: 1rem;
   margin-bottom: 1rem;

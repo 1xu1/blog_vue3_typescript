@@ -25,6 +25,4 @@ export default class index extends Vue {
   public limit = 12;
 }
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
-</style>
+<style lang="scss" scoped></style>

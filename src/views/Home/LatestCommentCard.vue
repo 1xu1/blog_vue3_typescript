@@ -58,8 +58,7 @@ export default class latestCommentCard extends Vue {
   }
 }
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
+<style lang="scss" scoped>
 a {
   cursor: pointer;
   color: #757575;

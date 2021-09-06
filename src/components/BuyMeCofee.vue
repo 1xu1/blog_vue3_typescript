@@ -28,8 +28,7 @@ export default class Header extends Vue {
   public visibility = false;
 }
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
+<style lang="scss" scoped>
 .buy-column {
   display: flex;
   flex-direction: column;

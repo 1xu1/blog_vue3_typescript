@@ -32,8 +32,7 @@ export default class Pagination extends Vue {
   }
 }
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
+<style lang="scss" scoped>
 .row {
   display: flex;
   justify-content: center;
@@ -44,7 +43,7 @@ export default class Pagination extends Vue {
   width: 35px;
   height: 35px;
   background: #fff;
-  border: #616161 solid 1px;
+  border: 1px solid #ebeef5;
   border-radius: 5px;
   color: #606266;
 }
@@ -56,7 +55,7 @@ export default class Pagination extends Vue {
   background: rgba(26, 115, 132, 0.5);
 }
 .item:disabled {
-  border: #bdbdbd solid 1px;
+  border: 1px solid #ebeef5;
   color: #e0e0e0;
 }
 </style>

@@ -10,7 +10,9 @@
       <router-link class="head-item" to="/Sharing">资源分享</router-link>
       <router-link class="head-item" to="/toDoList">ToDo</router-link>
     </nav>
-    <el-button @click="loginVisible = true" class="head-button">登录</el-button>
+    <el-button @click="loginVisible = true" class="head-button" type="primary"
+      >登录</el-button
+    >
 
     <!--登陆弹框-->
     <el-dialog title="登陆弹框" v-model="loginVisible">
@@ -111,8 +113,7 @@ export default class Header extends Vue {
   }
 }
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
+<style lang="scss" scoped>
 .head-contanier {
   display: flex;
   position: relative;
@@ -120,8 +121,8 @@ export default class Header extends Vue {
   height: 70px;
   align-items: center;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid #dee2e6;
-  background: white;
+  /* border-bottom: 1px solid #dee2e6; */
+  /* background: white; */
 }
 .head-icon {
   margin: 15px 15px 15px 15px;

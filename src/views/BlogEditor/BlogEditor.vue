@@ -161,8 +161,7 @@ export default class BlogEditor extends Vue {
   }
 }
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
+<style lang="scss" scoped>
 .editor {
   height: 700px;
 }

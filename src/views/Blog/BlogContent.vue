@@ -1,14 +1,19 @@
 <template>
   <!--博文内容块-->
   <div>
-    <div v-if="loading">
+    <div v-show="loading">
       <div class="loading">
         <LoadingIcon></LoadingIcon>
       </div>
     </div>
     <!--博文内容-->
-    <div v-else>
-      <v-md-preview :text="text" mode="preview"></v-md-preview>
+    <div v-show="!loading">
+      <v-md-preview
+        @change="changeBlog"
+        :text="text"
+        mode="preview"
+        ref="preview"
+      ></v-md-preview>
     </div>
   </div>
 </template>
@@ -37,11 +42,63 @@ VMdPreview.use(vuepressTheme, {
       default: true,
     },
   },
+  mounted() {
+    this.preview = this.$refs.preview.$el;
+  },
 })
-export default class BlogContent extends Vue {}
+export default class BlogContent extends Vue {
+  public titles: unknown[] = [];
+  public preview: any = null;
+  // 等待博文加载完毕
+  public changeBlog(text: string): void {
+    if (text.length != 0) {
+      const anchors = this.preview.querySelectorAll("h1,h2,h3,h4,h5,h6");
+      this.getMenuDate(anchors);
+    }
+  }
+  // 获取目录数据
+  public getMenuDate(anchors: NodeList): void {
+    // 提取所有标题节点
+    // 转化为数组，因为querySelectorAll提取出来的是NodeList类型
+    const titles = Array.from(anchors).filter((title) => {
+      let title1 = title as HTMLElement;
+      !!title1.innerText.trim();
+    }) as HTMLElement[];
+    // 无标题处理
+    if (!titles.length) {
+      this.titles = [];
+      return;
+    }
+    // 提取标签名
+    const hTags = Array.from(
+      new Set(titles.map((title) => title.tagName))
+    ).sort();
+    // 返回titles数组
+    this.titles = titles.map((el) => ({
+      title: el.innerText,
+      lineIndex: el.getAttribute("data-v-md-line"),
+      indent: hTags.indexOf(el.tagName),
+      key: Symbol(),
+    }));
+  }
+  public handleAnchorClick(anchor: { title: string; lineIndex: string }): void {
+    const preview: any = this.$refs.preview;
+    const { lineIndex } = anchor;
+    const heading = preview.$el.querySelector(
+      `[data-v-md-line="${lineIndex}"]`
+    );
+    if (heading) {
+      preview.scrollToTarget({
+        target: heading,
+        scrollContainer: window,
+        top: 60,
+        behavior: "smooth",
+      });
+    }
+  }
+}
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
+<style lang="scss" scoped>
 .loading {
   display: flex;
   width: 100%;

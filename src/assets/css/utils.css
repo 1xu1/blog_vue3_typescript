@@ -1,9 +1,27 @@
-.row{
-    display: flex;
-    flex-direction: row;
+.row {
+  display: flex;
+  flex-direction: row;
 }
-.column{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-border {
+  border: 1px solid #ebeef5;
+}
+.white {
+  background: #ffffff;
+}
+.white-opcity {
+  background: rgb(256, 256, 256, 0.8);
+}
+.light-opcity {
+  opacity: 0.2;
+}
+.medium-opcity {
+  opacity: 0.5;
+}
+.heavy-opcity {
+  opacity: 0.9;
 }

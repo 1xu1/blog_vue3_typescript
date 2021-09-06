@@ -92,8 +92,7 @@ export default class Header extends Vue {
   }
 }
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
+<style lang="scss" scoped>
 a {
   text-decoration: none;
   color: black;

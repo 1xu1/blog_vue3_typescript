@@ -24,6 +24,4 @@ import { ElMenu, ElSubmenu, ElMenuItem, ElMenuItemGroup } from "element-plus";
 })
 export default class Header extends Vue {}
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
-</style>
+<style lang="scss" scoped></style>

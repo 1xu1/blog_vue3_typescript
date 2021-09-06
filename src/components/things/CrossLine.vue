@@ -9,8 +9,7 @@ import { Options, Vue } from "vue-class-component";
 })
 export default class CrossLine extends Vue {}
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
+<style lang="scss" scoped>
 .line {
   height: 1px;
   background: #bdbdbd;

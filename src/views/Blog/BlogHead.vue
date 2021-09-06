@@ -64,8 +64,7 @@ export default class BlogContent extends Vue {
   }
 }
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
+<style lang="scss" scoped>
 .head_info {
   background-color: black;
   background-image: url(~@/assets/img/head_3.jpg);

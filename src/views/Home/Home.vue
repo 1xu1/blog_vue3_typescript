@@ -8,6 +8,7 @@
           :limit="limit"
           :blog="blogSorted"
           :loading="loading"
+          style="margin-top: 20px"
         ></BlogList>
         <Pagination
           :pageNum="page"
@@ -21,7 +22,6 @@
       </div>
       <div class="right">
         <PersonalCard></PersonalCard>
-        <MusicPlayer songId="503268086"></MusicPlayer>
         <scroll-to-top></scroll-to-top>
       </div>
     </div>
@@ -36,7 +36,6 @@ import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import BlogList from "@/views/Home/BlogList.vue";
 import Pagination from "@/components/Pagination.vue";
-import MusicPlayer from "@/components/MusicPlayer.vue";
 import LabelCloudCard from "./LabelCloudCard.vue";
 import PersonalCard from "./PersonalCard.vue";
 import LatestCommentCard from "./LatestCommentCard.vue";
@@ -47,12 +46,10 @@ import ScrollToTop from "@/components/ScrollToTop.vue";
     Footer,
     BlogList,
     Pagination,
-    MusicPlayer,
     LabelCloudCard,
     LatestCommentCard,
     PersonalCard,
     ScrollToTop,
-    // SolarSystem,
   },
   mounted() {
     this.page = this.$route.query.page;
@@ -118,8 +115,7 @@ export default class Home extends Vue {
   }
 }
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
+<style lang="scss" scoped>
 @media screen and (max-width: 1000px) {
   .container {
     background-color: lightblue;

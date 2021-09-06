@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 <template>
   <div class="box-shadow comment">
     <!--评论回复功能块-->
@@ -162,8 +161,7 @@ export default class Comment extends Vue {
   }
 }
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
+<style lang="scss" scoped>
 .comment {
   margin-top: 20px;
   padding: 20px 20px 20px 20px;

@@ -21,6 +21,4 @@ import { ElContainer, ElAside, ElMain } from "element-plus";
 })
 export default class index extends Vue {}
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
-</style>
+<style lang="scss" scoped></style>

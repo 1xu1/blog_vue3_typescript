@@ -167,6 +167,4 @@ export default class list extends Vue {
   }
 }
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
-</style>
+<style lang="scss" scoped></style>

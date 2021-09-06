@@ -104,8 +104,7 @@ export default class Header extends Vue {
   }
 }
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
+<style lang="scss" scoped>
 .loading {
   display: flex;
   width: 100%;
@@ -121,7 +120,6 @@ export default class Header extends Vue {
 .blog-card {
   border: 1px solid #ebeef5;
   padding: 20px 10px;
-  margin-top: 10px;
   background-color: white;
   cursor: pointer;
 }

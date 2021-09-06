@@ -6,23 +6,25 @@
     </div>
     <div class="container">
       <div>
+        <div
+          style="position: fixed; left: 50%; margin-left: -475px; width: 25px"
+        >
+          <LikeButton
+            @clickLike="clickLike()"
+            :blog_id="blog_id"
+            :blog="blog"
+          ></LikeButton>
+        </div>
         <div class="content_block">
           <BlogContent
             :text="blog.blog_content"
             :loading="loading"
           ></BlogContent>
-          <div style="position: relative; left: 90%">
-            <LikeButton
-              @clickLike="clickLike()"
-              :blog_id="blog_id"
-              :blog="blog"
-            ></LikeButton>
-          </div>
+          <Comment
+            :blog_id="blog_id"
+            style="background-color: #fff; margin-top: 10px"
+          ></Comment>
         </div>
-        <Comment
-          :blog_id="blog_id"
-          style="background-color: #fff; margin-top: 10px"
-        ></Comment>
       </div>
     </div>
     <Footer></Footer>
@@ -95,8 +97,7 @@ export default class Blog extends Vue {
   }
 }
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
+<style lang="scss" scoped>
 .container {
   display: flex;
   justify-content: center;
@@ -105,7 +106,7 @@ export default class Blog extends Vue {
   width: 100%;
 }
 .content_block {
-  width: 800px;
+  max-width: 800px;
   padding-bottom: 10px;
   background-color: #fff;
   border: 1px solid #ebeef5;

@@ -45,8 +45,7 @@ import { Options, Vue } from "vue-class-component";
 })
 export default class MusicPlayer extends Vue {}
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
+<style lang="scss" scoped>
 .music-player {
   position: fixed;
   right: 20px;

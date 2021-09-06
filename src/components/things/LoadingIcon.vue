@@ -9,9 +9,8 @@ import { Options, Vue } from "vue-class-component";
 })
 export default class LoadingIcon extends Vue {}
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
-.loading-anim {
+<style lang="scss" scoped>
+\ .loading-anim {
   width: 35px;
   height: 35px;
   display: inline-block;

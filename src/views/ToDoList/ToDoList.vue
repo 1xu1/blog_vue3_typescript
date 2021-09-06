@@ -161,7 +161,7 @@ export default class Header extends Vue {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 @keyframes strikeitem {
   to {
     width: calc(100% + 1rem);

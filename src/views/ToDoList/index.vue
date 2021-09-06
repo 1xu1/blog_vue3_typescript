@@ -18,13 +18,11 @@ import ToDoList from "./ToDoList.vue";
 })
 export default class toDoList extends Vue {}
 </script>
-<style scoped>
-@import url("~@/assets/css/utils.css");
+<style lang="scss" scoped>
 .contanier {
   position: relative;
   height: 1024px;
   background: #d7ccc8;
   margin: 10px 10px 10px 10px;
-  background-image: ;
 }
 </style>
