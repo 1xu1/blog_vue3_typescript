@@ -6,14 +6,16 @@
         <LoadingIcon></LoadingIcon>
       </div>
     </div>
+
     <!--博文内容-->
-    <div v-show="!loading">
-      <v-md-preview
-        @change="changeBlog"
-        :text="text"
-        mode="preview"
-        ref="preview"
-      ></v-md-preview>
+    <div v-show="!loading" style="position: relative">
+      <div class="blog-menu">
+        <blog-menu
+          :titles="titles"
+          @handleAnchorClick="handleAnchorClick"
+        ></blog-menu>
+      </div>
+     
     </div>
   </div>
 </template>
@@ -21,6 +23,7 @@
 <script lang="ts">
 import LikeButton from "@/components/LikeButton.vue";
 import LoadingIcon from "@/components/things/LoadingIcon.vue";
+import BlogMenu from "./BlogMenu.vue";
 import { Options, Vue } from "vue-class-component";
 // VMdEditor相关
 import VMdPreview from "@kangc/v-md-editor/lib/preview";
@@ -32,27 +35,35 @@ VMdPreview.use(vuepressTheme, {
   Prism,
 });
 @Options({
-  components: { LikeButton, LoadingIcon, VMdPreview },
+  components: { LikeButton, LoadingIcon, VMdPreview, BlogMenu },
   props: {
     text: {
       String,
+      default: "",
     },
     loading: {
       type: Boolean,
       default: true,
     },
   },
-  mounted() {
-    this.preview = this.$refs.preview.$el;
+  watch: {
+    text(newVal, oldVal) {
+      if (!newVal) return;
+      this.$nextTick(() => {
+        const anchors =
+          this.$refs.preview.$el.querySelectorAll("h1,h2,h3,h4,h5,h6");
+
+        this.changeBlog(newVal, anchors);
+      });
+    },
   },
 })
 export default class BlogContent extends Vue {
   public titles: unknown[] = [];
-  public preview: any = null;
+
   // 等待博文加载完毕
-  public changeBlog(text: string): void {
+  public changeBlog(text: string, anchors: NodeList): void {
     if (text.length != 0) {
-      const anchors = this.preview.querySelectorAll("h1,h2,h3,h4,h5,h6");
       this.getMenuDate(anchors);
     }
   }
@@ -60,10 +71,14 @@ export default class BlogContent extends Vue {
   public getMenuDate(anchors: NodeList): void {
     // 提取所有标题节点
     // 转化为数组，因为querySelectorAll提取出来的是NodeList类型
-    const titles = Array.from(anchors).filter((title) => {
-      let title1 = title as HTMLElement;
-      !!title1.innerText.trim();
-    }) as HTMLElement[];
+    // console.log(anchors);
+    // const titles = Array.from(anchors).filter((title: any) => {
+    //   // console.log(title.innerText)
+    //   !!title.innerText.trim();
+    // }) as HTMLElement[];
+    const titles = Array.from(anchors);
+    // console.log("titles");
+    // console.log(titles);
     // 无标题处理
     if (!titles.length) {
       this.titles = [];
@@ -71,23 +86,29 @@ export default class BlogContent extends Vue {
     }
     // 提取标签名
     const hTags = Array.from(
-      new Set(titles.map((title) => title.tagName))
+      new Set(titles.map((title: any) => title.tagName))
     ).sort();
+    // console.log(hTags);
     // 返回titles数组
-    this.titles = titles.map((el) => ({
+    this.titles = titles.map((el: any) => ({
       title: el.innerText,
       lineIndex: el.getAttribute("data-v-md-line"),
       indent: hTags.indexOf(el.tagName),
       key: Symbol(),
     }));
+    // console.log(this.titles);
   }
-  public handleAnchorClick(anchor: { title: string; lineIndex: string }): void {
+  public handleAnchorClick(lineIndex: string): void {
     const preview: any = this.$refs.preview;
-    const { lineIndex } = anchor;
+    console.log(lineIndex);
     const heading = preview.$el.querySelector(
       `[data-v-md-line="${lineIndex}"]`
     );
+    console.log(heading);
+    console.log("!");
     if (heading) {
+      console.log(heading);
+      console.log("!");
       preview.scrollToTarget({
         target: heading,
         scrollContainer: window,
@@ -157,8 +178,9 @@ export default class BlogContent extends Vue {
   background-color: white;
 }
 
-.mavon {
-  background-color: white;
-  border: none;
+.blog-menu {
+  position: sticky;
+  margin-left: 820px;
+  top: 20px;
 }
 </style>

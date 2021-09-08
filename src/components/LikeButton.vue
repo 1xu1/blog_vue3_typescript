@@ -44,6 +44,10 @@ export default class LikeButton extends Vue {
   font-size: 25px;
   position: relative;
 }
+.like-button:hover {
+  transition: all 0.4s;
+  transform: scale(1.2);
+}
 .positive {
   color: $ACCENT-COLOR;
 }
@@ -80,6 +84,7 @@ export default class LikeButton extends Vue {
   border-radius: 2px;
   background: #ffffff;
 }
+
 i {
   font-style: normal;
 }
