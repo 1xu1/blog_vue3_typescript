@@ -207,12 +207,11 @@ export default class Blog extends Vue {
 }
 .center {
   // flex: 1 1000px 800px;
-  max-width: 800px;
+  width: 800px;
   padding-bottom: 10px;
   background-color: #fff;
   border: 1px solid #ebeef5;
   position: relative;
-  flex: 1;
 }
 .left {
   position: relative;

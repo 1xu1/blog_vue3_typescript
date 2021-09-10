@@ -2,68 +2,67 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
-    redirect: '/Home'
+    path: "/",
+    redirect: "/Home",
   },
   {
-    path: '/Home',
-    name: 'Home',
+    path: "/Home",
+    name: "Home",
     component: () => import("@/views/Home/Home.vue"),
     meta: {
-      title: '博客首页'
-    }
+      title: "博客首页",
+    },
   },
   {
-    path: '/Blog',
-    name: 'Blog',
+    path: "/Blog",
+    name: "Blog",
     component: () => import("@/views/Blog/Blog.vue"),
     meta: {
-      title: '博文'
-    }
-  }
-  ,
-  {
-    path: '/ToDoList',
-    name: 'ToDoList',
-    component: () => import('@/views/ToDoList/index.vue'),
-    meta: {
-      title: 'ToDo列表'
-    }
+      title: "博文",
+    },
   },
   {
-    path: '/BlogEditor',
-    name: 'BlogEditor',
+    path: "/ToDoList",
+    name: "ToDoList",
+    component: () => import("@/views/ToDoList/index.vue"),
+    meta: {
+      title: "ToDo列表",
+    },
+  },
+  {
+    path: "/BlogEditor",
+    name: "BlogEditor",
     component: () => import("@/views/BlogEditor/BlogEditor.vue"),
     meta: {
-      title: '博文编辑'
-    }
+      title: "博文编辑",
+    },
   },
   {
-    path: '/Sharing',
-    name: 'Sharing',
+    path: "/Sharing",
+    name: "Sharing",
     component: () => import("@/views/Sharing/index.vue"),
     meta: {
-      title: '资源分享'
-    }
+      title: "资源分享",
+    },
   },
   {
-    path: '/BackStage',
-    name: 'BackStage',
-    component: () => import('@/views/BackStage/index.vue'),
+    path: "/BackStage",
+    name: "BackStage",
+    component: () => import("@/views/BackStage/index.vue"),
     meta: {
-      title: '博客管理后台'
+      title: "博客管理后台",
     },
     children: [
       {
-        path: '/BackStage/BlogList',
-        name: 'BlogList',
+        path: "/BackStage/BlogList",
+        name: "BlogList",
         component: () => import("@/views/BackStage/BlogManager/index.vue"),
         meta: {
-          title: '博文列表'
-        }
-      }
-    ]
-  }
+          title: "博文列表",
+        },
+      },
+    ],
+  },
 ];
 
 const router = createRouter({
