@@ -31,11 +31,14 @@
         ></Comment>
       </div>
       <div class="right">
-        <blog-menu
-          class="blog-menu"
-          :titles="titles"
-          @handleAnchorClick="handleAnchorClick"
-        ></blog-menu>
+        <div class="blog-menu">
+          <el-scrollbar max-height="500px">
+            <blog-menu
+              :titles="titles"
+              @handleAnchorClick="handleAnchorClick"
+            ></blog-menu>
+          </el-scrollbar>
+        </div>
         <ScrollToTop></ScrollToTop>
       </div>
     </div>
@@ -54,6 +57,8 @@ import BlogContent from "./BlogContent.vue";
 import Comment from "./Comment.vue";
 import BlogHead from "./BlogHead.vue";
 import BlogMenu from "./BlogMenu.vue";
+
+import { ElScrollbar } from "element-plus";
 
 // VMdEditor相关
 import VMdPreview from "@kangc/v-md-editor/lib/preview";
@@ -77,11 +82,16 @@ import axios from "axios";
     ScrollToTop,
     VMdPreview,
     BlogMenu,
+    ElScrollbar,
   },
   mounted() {
     this.blog_id = this.$route.query.blog_id;
     this.getData();
     this.addBlogRead();
+    window.addEventListener("scroll", this.scrollEvent());
+  },
+  unmounted() {
+    document.removeEventListener("scroll", this.scrollEvent);
   },
   watch: {
     blog(newVal, oldVal) {
@@ -149,16 +159,7 @@ export default class Blog extends Vue {
   }
   // 获取目录数据
   public getMenuDate(anchors: NodeList): void {
-    // 提取所有标题节点
-    // 转化为数组，因为querySelectorAll提取出来的是NodeList类型
-    // console.log(anchors);
-    // const titles = Array.from(anchors).filter((title: any) => {
-    //   // console.log(title.innerText)
-    //   !!title.innerText.trim();
-    // }) as HTMLElement[];
     const titles = Array.from(anchors);
-    // console.log("titles");
-    // console.log(titles);
     // 无标题处理
     if (!titles.length) {
       this.titles = [];
@@ -178,17 +179,13 @@ export default class Blog extends Vue {
     }));
     // console.log(this.titles);
   }
+  // 点击目录滚动到对应位置
   public handleAnchorClick(lineIndex: string): void {
     const preview: any = this.$refs.preview;
-    console.log(lineIndex);
     const heading = preview.$el.querySelector(
       `[data-v-md-line="${lineIndex}"]`
     );
-    console.log(heading);
-    console.log("!");
     if (heading) {
-      console.log(heading);
-      console.log("!");
       preview.scrollToTarget({
         target: heading,
         scrollContainer: window,
@@ -196,6 +193,10 @@ export default class Blog extends Vue {
         behavior: "smooth",
       });
     }
+  }
+  // 监听页面滚动事件
+  public scrollEvent(): void {
+    console.log(document.documentElement.scrollTop);
   }
 }
 </script>
@@ -226,7 +227,6 @@ export default class Blog extends Vue {
 .blog-menu {
   margin: 10px;
   left: 20px;
-  width: 100%;
   position: sticky;
   top: 20px;
 }
