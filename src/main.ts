@@ -25,7 +25,7 @@ directives(app);
 app.mount("#app");
 
 // axios默认url配置
-axios.defaults.baseURL = "http://42.192.211.76:8083";
+axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
 
 router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面title */
