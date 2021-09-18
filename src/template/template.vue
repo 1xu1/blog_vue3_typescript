@@ -7,6 +7,6 @@ import { Options, Vue } from "vue-class-component";
 @Options({
   components: {},
 })
-export default class Header extends Vue {}
+export default class Template extends Vue {}
 </script>
 <style lang="scss" scoped></style>

@@ -44,7 +44,7 @@
     <PagesButton
       :pageNum="page"
       :pages="pageTotal"
-      @change="getData()"
+      @pageTrans="refresh()"
     ></PagesButton>
   </div>
 </template>
@@ -92,7 +92,19 @@ export default class list extends Vue {
   jumpToEditor(index: never): void {
     window.location.href = "/blogEditor?blog_id=" + this.blog[index].blog_id;
   }
-  //读取全部的博文数据
+  // 分页跳转刷新数据
+  public refresh(page: number, limit: number): void {
+    if (page) this.page = page;
+    if (limit) this.limit = limit;
+    console.log(this.page);
+    this.getData();
+    window.scrollTo({
+      left: 0,
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+  // 读取全部的博文数据
   getData(): void {
     axios
       .get("/api/admin/getAllBlog", {

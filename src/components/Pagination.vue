@@ -46,6 +46,7 @@ export default class Pagination extends Vue {
   border: 1px solid #ebeef5;
   border-radius: 5px;
   color: #606266;
+  cursor: pointer;
 }
 .item:hover {
   background: rgba(26, 115, 132, 0.06);
