@@ -13,5 +13,5 @@ import Background from "@/components/background/Background.vue";
 export default class App extends Vue {}
 </script>
 <style lang="scss" scoped>
-@import url("~@/assets/css/utils.css");
+@import url("~@/style/color.scss");
 </style>

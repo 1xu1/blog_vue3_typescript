@@ -2,8 +2,8 @@
   <div class="personal-card">
     <img src="@/assets/img/head.jpg" class="head-icon" />
     <span>盐巴鱼</span>
-    <span>“欢迎大家来和我技术交流”</span>
-    <span>“有外包单子也可以找我”</span>
+    <span>“路漫漫其修远兮”</span>
+    <span>“吾将上下而求索”</span>
     <a target="_blank" href="http://haosilu.cn">外包作品</a>
     <div class="row">
       <svg

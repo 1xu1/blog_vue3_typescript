@@ -7,6 +7,7 @@
       <input type="text" v-model="blog.blog_label" />
       <button @click="save()">保存</button>
       <button @click="addBlog()">新建</button>
+      <button @click="addBlogByTemplate()">模版新建</button>
       <button v-show="blog.blog_visibility == 0" @click="editVis(1)">
         发布
       </button>
@@ -114,6 +115,31 @@ export default class BlogEditor extends Vue {
       .catch((err) => {
         console.log(err);
         ElMessage.error("调整失败");
+      });
+  }
+  addBlogByTemplate(): void {
+    axios
+      .post(
+        "/api/admin/addBlog",
+        {
+          blog_content: this.blog.blog_content,
+          blog_title: this.blog.blog_title,
+          blog_label: this.blog.blog_label,
+          blog_writer: "徐宇翔",
+        },
+        {
+          headers: {
+            Token: sessionStorage.login_stat,
+          },
+        }
+      )
+      .then((res) => {
+        ElMessage.success("新增成功");
+        location.replace("/blogEditor?blog_id=" + res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        ElMessage.error("新增失败");
       });
   }
   //新增博文
