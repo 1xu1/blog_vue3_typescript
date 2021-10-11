@@ -21,20 +21,18 @@ export default class ScrollToTop extends Vue {
 </script>
 <style lang="scss" scoped>
 .item {
-  display: flex;
-  justify-content: center;
-  align-content: center;
   cursor: pointer;
   position: fixed;
-  right: 220px;
-  bottom: 130px;
-  z-index: 99;
-  font-size: 35px;
+  right: 20px;
+  bottom: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
   width: 35px;
   height: 35px;
   border: 1px solid $DIVIDER-COLOR;
   border-radius: 2px;
   background: #ffffff;
-  color: $PRIMARY-TEXT;
 }
 </style>

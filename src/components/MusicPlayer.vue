@@ -1,6 +1,8 @@
 <template>
   <div class="music-player">
+    <span @click="visible = !visible" class="fas fa-music icons"></span>
     <iframe
+      v-show="visible"
       frameborder="no"
       border="0"
       marginwidth="0"
@@ -43,12 +45,30 @@ import { Options, Vue } from "vue-class-component";
     },
   },
 })
-export default class MusicPlayer extends Vue {}
+export default class MusicPlayer extends Vue {
+  public visible = true;
+}
 </script>
 <style lang="scss" scoped>
 .music-player {
   position: fixed;
   right: 20px;
   bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  transition: all 0.4s;
+}
+.icons {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 35px;
+  height: 35px;
+  border: 1px solid $DIVIDER-COLOR;
+  border-radius: 2px;
+  background: #ffffff;
 }
 </style>
