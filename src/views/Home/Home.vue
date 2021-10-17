@@ -102,9 +102,9 @@ export default class Home extends Vue {
   }
   //分页跳转刷新博文列表
   public refresh(page: number, limit: number, blog_label: string): void {
-    if (page != null) this.page = page;
-    if (!limit != null) this.limit = limit;
-    if (!blog_label != null) this.blog_label = blog_label;
+    if (page) this.page = page;
+    if (limit) this.limit = limit;
+    if (blog_label) this.blog_label = blog_label;
     this.loading = true;
     this.getData();
     window.scrollTo({
