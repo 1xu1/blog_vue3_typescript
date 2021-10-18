@@ -104,7 +104,7 @@ export default class Home extends Vue {
   public refresh(page: number, limit: number, blog_label: string): void {
     if (page) this.page = page;
     if (limit) this.limit = limit;
-    if (blog_label) this.blog_label = blog_label;
+    if (blog_label || blog_label === "") this.blog_label = blog_label;
     this.loading = true;
     this.getData();
     window.scrollTo({
