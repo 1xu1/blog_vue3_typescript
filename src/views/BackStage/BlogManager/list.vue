@@ -44,7 +44,7 @@
     <PagesButton
       :pageNum="page"
       :pages="pageTotal"
-      @pageTrans="refresh()"
+      @pageTrans="refresh"
     ></PagesButton>
   </div>
 </template>
@@ -96,7 +96,6 @@ export default class list extends Vue {
   public refresh(page: number, limit: number): void {
     if (page) this.page = page;
     if (limit) this.limit = limit;
-    console.log(this.page);
     this.getData();
     window.scrollTo({
       left: 0,
