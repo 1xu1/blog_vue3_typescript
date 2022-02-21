@@ -44,9 +44,6 @@ export default class Header extends Vue {
   transition: all 0.4s;
   opacity: 0.8;
   background-color: rgb(235, 237, 239, 0.5);
-  border: 1px solid $DIVIDER-COLOR;
-}
-.menu-contanier {
-  overflow: scroll;
+  color: $PRIMARY-COLOR;
 }
 </style>

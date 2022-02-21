@@ -229,6 +229,9 @@ export default class Blog extends Vue {
   left: 20px;
   position: sticky;
   top: 20px;
+  background: #fff;
+  border: 1px solid #ebeef5;
+  padding: 5px 10px;
 }
 .like-button {
   margin: 10px;
