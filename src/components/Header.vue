@@ -10,35 +10,42 @@
       <router-link class="head-item" to="/Sharing">资源分享</router-link>
       <router-link class="head-item" to="/toDoList">ToDo</router-link>
     </nav>
-    <el-button @click="loginVisible = true" class="head-button" type="primary"
+    <el-button
+      v-if="!login_stat"
+      @click="loginVisible = true"
+      class="head-button"
+      type="primary"
       >登录</el-button
     >
+    <el-button v-else @click="loginSucceed" class="head-button" type="primary"
+      >后台管理
+    </el-button>
 
     <!--登陆弹框-->
     <el-dialog title="登陆弹框" v-model="loginVisible">
-      <el-form ref="form" :model="form" label-width="80px" label-position="top">
-        <el-form-item label="用户名" prop="login_id">
+      <el-form label-width="80px" label-position="top">
+        <el-form-item label="用户名" prop="form.login_id">
           <el-input
             placeholder="请输入用户名"
             clearable
-            v-model="login_id"
-            @change="change()"
+            v-model="form.login_id"
           />
         </el-form-item>
-        <el-form-item label="密码" prop="login_pwd">
+        <el-form-item label="密码" prop="form.login_pwd">
           <el-input
             placeholder="请输入密码"
-            v-model="login_pwd"
+            v-model="form.login_pwd"
             clearable
             show-password
-            @change="change()"
           ></el-input>
         </el-form-item>
       </el-form>
       <template #footer>
         <div class="dialog-footer">
           <el-button @click="loginVisible = false">取 消</el-button>
-          <el-button type="primary" @click="login(login_id, login_pwd)"
+          <el-button
+            type="primary"
+            @click="login(form.login_id, form.login_pwd)"
             >确 定</el-button
           >
         </div>
@@ -49,6 +56,9 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+
+import { getUserInfo } from "@/api/user";
+
 import axios from "axios";
 import {
   ElInput,
@@ -71,18 +81,24 @@ import {
 export default class Header extends Vue {
   public login_stat = false;
   public loginVisible = false;
+  public userInfo = null;
   public form = {
-    login_id: "test",
-    login_pwd: "test",
+    login_id: "",
+    login_pwd: "",
   };
-  public login_id = "";
-  public login_pwd = "";
+  public getUserInfo(id: string): void {
+    getUserInfo(id).then((res: any) => {
+      sessionStorage.userInfo = res.data;
+      this.userInfo = res.data;
+    });
+  }
   public login(id: string, pwd: string): void {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     let _this = this;
-    if (sessionStorage.login_stat) {
-      this.loginSucceed();
-    }
+    // if (sessionStorage.login_stat) {
+    //   this.login_stat = sessionStorage.login_stat;
+    //   this.loginSucceed();
+    // }
     axios
       .get("/api/user/login", {
         params: {
@@ -93,6 +109,8 @@ export default class Header extends Vue {
       .then((res) => {
         if (res.data.data !== null && res.data.rspCode == "200") {
           sessionStorage.login_stat = res.data.data;
+          this.login_stat = res.data.data;
+          axios.defaults.headers.common["Authorization"] = this.login_stat;
           this.loginSucceed();
         } else _this.loginFail();
       })

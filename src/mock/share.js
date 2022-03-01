@@ -18,7 +18,7 @@ export default [
 const shareList = [
   {
     share_title: "MD调色盘",
-    share_desc: "可以帮你生成遵循MDUI规范的调色盘网站，我想不出色彩搭配时都回来这里自动生成，搭配色彩",
+    share_desc: "可以帮你生成遵循MDUI规范的调色盘网站，我想不出色彩搭配时都会来这里自动生成，搭配色彩",
     share_label: "#网站",
     share_url: "https://www.materialpalette.com/",
     share_id: "1",

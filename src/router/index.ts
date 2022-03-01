@@ -61,6 +61,22 @@ const routes: Array<RouteRecordRaw> = [
           title: "博文列表",
         },
       },
+      {
+        path: "/BackStage/CommentList",
+        name: "CommentList",
+        component: () => import("@/views/BackStage/CommentManager/index.vue"),
+        meta: {
+          title: "评论列表",
+        },
+      },
+      {
+        path: "/BackStage/ShareList",
+        name: "ShareList",
+        component: () => import("@/views/BackStage/ShareManager/index.vue"),
+        meta: {
+          title: "分享列表",
+        },
+      },
     ],
   },
 ];

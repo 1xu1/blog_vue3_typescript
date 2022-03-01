@@ -26,7 +26,6 @@ function GetRequest() {
 function setIpAdress() {
   if (window.location.origin === "file://") {
     axios.defaults.baseURL = "http://localhost:8083";
-    //axios.defaults.baseURL = "http://42.192.211.76:8083";
   } else {
     axios.defaults.baseURL = window.location.origin + ":8083";
   }

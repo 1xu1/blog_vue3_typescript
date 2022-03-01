@@ -42,7 +42,7 @@ VMdEditor.use(vuepressTheme, {
   mounted() {
     if (!sessionStorage.login_stat) {
       alert("登录状态异常，跳转回首页！");
-      location.replace("/");
+      this.$router.replace("/");
     } else {
       this.getData();
     }
@@ -135,7 +135,7 @@ export default class BlogEditor extends Vue {
       )
       .then((res) => {
         ElMessage.success("新增成功");
-        location.replace("/blogEditor?blog_id=" + res.data);
+        this.$router.replace("/blogEditor?blog_id=" + res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -161,7 +161,7 @@ export default class BlogEditor extends Vue {
       )
       .then((res) => {
         ElMessage.success("新增成功");
-        location.replace("/blogEditor?blog_id=" + res.data);
+        this.$router.replace("/blogEditor?blog_id=" + res.data);
       })
       .catch((err) => {
         console.log(err);

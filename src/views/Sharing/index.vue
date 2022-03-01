@@ -1,7 +1,18 @@
 <template>
   <Header></Header>
   <div class="card-contanier">
-    <span class="fas fa-ellipsis-v menu-icon"></span>
+    <div class="menu-icon" v-if="sessionStorage.login_stat">
+      <el-dropdown trigger="click">
+        <span class="fas fa-ellipsis-v"></span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item @click="editShareDialog = !editShareDialog"
+              >添加分享资源</el-dropdown-item
+            >
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+    </div>
     <ShareCard
       class="item"
       v-for="item in shareList"
@@ -19,6 +30,9 @@
     @pageTrans="refresh"
   ></Pagination>
   <Footer></Footer>
+  <el-dialog v-model="editShareDialog">
+    <EditShareDialog></EditShareDialog>
+  </el-dialog>
 </template>
 
 <script lang="ts">
@@ -27,21 +41,32 @@ import Footer from "@/components/Footer.vue";
 import Header from "@/components/Header.vue";
 import Pagination from "@/components/Pagination.vue";
 
+import editShareDialog from "./EditShareDialog.vue";
 import ShareCard from "./ShareCard.vue";
 
 import { getShareList } from "@/api/share";
+
+import { ElDropdown, ElDropdownItem, ElDialog, ElInput } from "element-plus";
+
 @Options({
   components: {
     Footer,
     Header,
     Pagination,
     ShareCard,
+    ElDropdown,
+    ElDropdownItem,
+    ElDialog,
+    ElInput,
+    editShareDialog,
   },
   mounted() {
     this.getData();
   },
 })
 export default class index extends Vue {
+  // 编辑分享弹窗
+  public editShareDialog = false;
   public page = 1;
   public limit = 10;
   public pageTotal = 10;
@@ -49,8 +74,9 @@ export default class index extends Vue {
   public label = "";
   public getData(): void {
     const params = {
-      page: this.page,
+      start: this.page,
       limit: this.limit,
+      label: this.label,
     };
     getShareList(params).then(
       (res: { data: { list: never[]; pages: number } }) => {
@@ -92,6 +118,7 @@ export default class index extends Vue {
   position: absolute;
   top: 10px;
   right: 10px;
+  cursor: pointer;
 }
 @media screen {
 }
