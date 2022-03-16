@@ -21,14 +21,16 @@ const app = createApp(App).use(store).use(router);
 import directives from "@/directives/index";
 
 // 载入mockjs
-require("./mock");
+// require("./mock");
 
 directives(app);
 
 app.mount("#app");
 
-// axios默认url配置
-axios.defaults.url = process.env.VUE_APP_BASE_URL;
+// axios默认url配置a
+// axios.defaults.url = process.env.VUE_APP_BASE_URL;
+// axios.defaults.baseURL = `http://101.43.127.225:8083`
+axios.defaults.baseURL = `http://localhost:8083`
 
 router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面title */

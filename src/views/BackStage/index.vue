@@ -1,5 +1,4 @@
 <template>
-  <Header></Header>
   <el-container>
     <el-aside style="width: 200px">
       <side-bar></side-bar>
@@ -12,7 +11,7 @@
 
 <script lang="ts">
 import Footer from "@/components/Footer.vue";
-import Header from "@/components/Header.vue";
+import Header from "@/layout/Header.vue";
 import SideBar from "./SideBar.vue";
 import { Options, Vue } from "vue-class-component";
 import { ElContainer, ElAside, ElMain } from "element-plus";

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header></Header>
     <div style="margin-top: -22px">
       <BlogHead :blog_id="blog_id" :blog="blog" :loading="loading"></BlogHead>
     </div>
@@ -49,7 +48,7 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import Footer from "@/components/Footer.vue";
-import Header from "@/components/Header.vue";
+import Header from "@/layout/Header.vue";
 import LikeButton from "@/components/LikeButton.vue";
 import ScrollToTop from "@/components/ScrollToTop.vue";
 

@@ -8,7 +8,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/Home",
     name: "Home",
-    component: () => import("@/views/Home/Home.vue"),
+    component: () => import("@/views/Home/index.vue"),
     meta: {
       title: "博客首页",
     },
@@ -16,7 +16,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/Blog",
     name: "Blog",
-    component: () => import("@/views/Blog/Blog.vue"),
+    component: () => import("@/views/Blog/index.vue"),
     meta: {
       title: "博文",
     },
@@ -32,7 +32,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/BlogEditor",
     name: "BlogEditor",
-    component: () => import("@/views/BlogEditor/BlogEditor.vue"),
+    component: () => import("@/views/BlogEditor/index.vue"),
     meta: {
       title: "博文编辑",
     },

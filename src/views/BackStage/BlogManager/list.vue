@@ -71,7 +71,7 @@ import axios from "axios";
     }
     if (!sessionStorage.login_stat) {
       alert("登录状态异常，跳转回首页！");
-      this.rou.replace("/");
+      this.$router.replace("/");
     } else {
       this.getData();
     }

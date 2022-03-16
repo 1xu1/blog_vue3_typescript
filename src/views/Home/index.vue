@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header></Header>
     <div class="container">
       <div class="middle">
         <BlogList
@@ -32,7 +31,7 @@
 <script lang="ts">
 import axios from "axios";
 import { Options, Vue } from "vue-class-component";
-import Header from "@/components/Header.vue";
+import Header from "@/layout/Header.vue";
 import Footer from "@/components/Footer.vue";
 import BlogList from "@/views/Home/BlogList.vue";
 import Pagination from "@/components/Pagination.vue";

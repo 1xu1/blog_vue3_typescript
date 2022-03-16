@@ -1,9 +1,8 @@
 <template>
-  <Header></Header>
-  <div class="card-contanier">
-    <div class="menu-icon" v-if="sessionStorage.login_stat">
+  <div class="card-container">
+    <div v-if="permission.user_permission == 'admin'" class="menu-icon">
       <el-dropdown trigger="click">
-        <span class="fas fa-ellipsis-v"></span>
+        <span class="fas fa-ellipsis-v" style="font-size: 20px"></span>
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="editShareDialog = !editShareDialog"
@@ -30,23 +29,38 @@
     @pageTrans="refresh"
   ></Pagination>
   <Footer></Footer>
-  <el-dialog v-model="editShareDialog">
-    <EditShareDialog></EditShareDialog>
+  <el-dialog v-model="editShareDialog" title="添加新分享">
+    <slot><EditShareDialog :share="share"></EditShareDialog></slot>
+    <template #footer>
+      <span>
+        <el-button @click="editShareDialog = false">取消</el-button>
+        <el-button type="primary" @click="handleAddShare()">添加</el-button>
+      </span>
+    </template>
   </el-dialog>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import Footer from "@/components/Footer.vue";
-import Header from "@/components/Header.vue";
+import Header from "@/layout/Header.vue";
 import Pagination from "@/components/Pagination.vue";
+import { addShare } from "@/api/share";
 
-import editShareDialog from "./EditShareDialog.vue";
+import EditShareDialog from "./EditShareDialog.vue";
 import ShareCard from "./ShareCard.vue";
 
 import { getShareList } from "@/api/share";
 
-import { ElDropdown, ElDropdownItem, ElDialog, ElInput } from "element-plus";
+import {
+  ElDropdown,
+  ElDropdownMenu,
+  ElDropdownItem,
+  ElDialog,
+  ElInput,
+  ElMessage,
+  ElButton,
+} from "element-plus";
 
 @Options({
   components: {
@@ -58,10 +72,17 @@ import { ElDropdown, ElDropdownItem, ElDialog, ElInput } from "element-plus";
     ElDropdownItem,
     ElDialog,
     ElInput,
-    editShareDialog,
+    EditShareDialog,
+    ElMessage,
+    ElButton,
+    ElDropdownMenu,
   },
   mounted() {
     this.getData();
+    const userInfo = sessionStorage.getItem("userInfo");
+    if (userInfo) {
+      this.permission = JSON.parse(userInfo);
+    }
   },
 })
 export default class index extends Vue {
@@ -72,6 +93,14 @@ export default class index extends Vue {
   public pageTotal = 10;
   public shareList = [];
   public label = "";
+  public permission = "";
+  public share = {
+    share_title: "",
+    share_label: "",
+    img_url: "",
+    share_desc: "",
+    share_url: "",
+  };
   public getData(): void {
     const params = {
       start: this.page,
@@ -96,11 +125,21 @@ export default class index extends Vue {
       behavior: "smooth",
     });
   }
+  public handleAddShare(): void {
+    addShare(this.share)
+      .then(() => {
+        ElMessage.success("添加成功");
+      })
+      .catch((err: any) => {
+        console.log(err);
+        ElMessage.error("添加失败");
+      });
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.card-contanier {
+.card-container {
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -108,6 +147,7 @@ export default class index extends Vue {
   border: 1px solid $DIVIDER-COLOR;
   padding: 20px;
   margin-top: 20px;
+  margin-left: 20px;
   justify-content: flex-start;
   max-width: 1200px;
   .item {

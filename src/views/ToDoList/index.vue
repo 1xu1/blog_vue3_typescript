@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header></Header>
     <div class="contanier">
       <to-do-list></to-do-list>
     </div>
@@ -11,7 +10,7 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import Footer from "@/components/Footer.vue";
-import Header from "@/components/Header.vue";
+import Header from "@/layout/Header.vue";
 import ToDoList from "./ToDoList.vue";
 @Options({
   components: { Footer, Header, ToDoList },

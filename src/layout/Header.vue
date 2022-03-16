@@ -17,7 +17,11 @@
       type="primary"
       >登录</el-button
     >
-    <el-button v-else @click="loginSucceed" class="head-button" type="primary"
+    <el-button
+      v-else
+      @click="jumpToBackStage()"
+      class="head-button"
+      type="primary"
       >后台管理
     </el-button>
 
@@ -77,6 +81,14 @@ import {
     ElDialog,
     ElMessage,
   },
+  mounted() {
+    const loginState = sessionStorage.getItem("login_stat");
+    if (loginState) {
+      this.login_stat = true;
+      axios.defaults.headers.common["Authorization"] =
+        sessionStorage.getItem("login_stat");
+    }
+  },
 })
 export default class Header extends Vue {
   public login_stat = false;
@@ -95,10 +107,6 @@ export default class Header extends Vue {
   public login(id: string, pwd: string): void {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     let _this = this;
-    // if (sessionStorage.login_stat) {
-    //   this.login_stat = sessionStorage.login_stat;
-    //   this.loginSucceed();
-    // }
     axios
       .get("/api/user/login", {
         params: {
@@ -108,9 +116,9 @@ export default class Header extends Vue {
       })
       .then((res) => {
         if (res.data.data !== null && res.data.rspCode == "200") {
-          sessionStorage.login_stat = res.data.data;
-          this.login_stat = res.data.data;
-          axios.defaults.headers.common["Authorization"] = this.login_stat;
+          sessionStorage.setItem("login_stat", JSON.stringify(res.data.data));
+          axios.defaults.headers.common["Authorization"] =
+            sessionStorage.getItem("login_stat");
           this.loginSucceed();
         } else _this.loginFail();
       })
@@ -120,10 +128,25 @@ export default class Header extends Vue {
       });
   }
   public loginSucceed(): void {
-    ElMessage.success("登录成功");
+    getUserInfo({
+      user_id: this.form.login_id,
+    })
+      .then((res: any) => {
+        sessionStorage.setItem("userInfo", JSON.stringify(res.data));
+        this.loginVisible = false;
+        ElMessage.success("登录成功");
+        this.login_stat = true;
+      })
+      .catch((err: any) => {
+        console.log(err);
+        ElMessage.error("获取用户信息失败");
+      });
+  }
+  public jumpToBackStage(): void {
     this.$router.push("/BackStage/BlogList");
   }
   public loginFail(): void {
+    this.login_stat = false;
     ElMessage.error("登录失败");
   }
   public change(): void {
