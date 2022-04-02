@@ -86,7 +86,7 @@ export default class Comment extends Vue {
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     const blog_id = this.blog_id;
     axios
-      .get("/api/getAllComment", {
+      .get("/api/getBlogComment", {
         params: {
           blog_id: blog_id,
         },

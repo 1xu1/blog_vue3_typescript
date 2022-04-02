@@ -15,3 +15,6 @@ export const addShare = (params) => {
 export const addShareLike = (params) => {
   return request.post("/share/addShareLike", params);
 };
+export const deleteShare = (params) => {
+  return request.post("/share/deleteShare", params);
+};

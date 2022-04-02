@@ -27,11 +27,11 @@
     </el-submenu>
     <el-submenu index="3">
       <template v-slot:title
-        ><i class="el-icon-data-line"></i>资源管理</template
+        ><i class="el-icon-data-line"></i>分享管理</template
       >
       <el-menu-item-group>
-        <el-menu-item index="/BackStage/SourceList"
-          ><i class="el-icon-document"></i>资源列表</el-menu-item
+        <el-menu-item index="/BackStage/ShareList"
+          ><i class="el-icon-document"></i>分享列表</el-menu-item
         >
       </el-menu-item-group>
     </el-submenu>

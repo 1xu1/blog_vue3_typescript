@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div class="row">
-      <el-input></el-input><el-button>筛选</el-button
-      ><el-button @click="addBlog()">新增博文</el-button>
-    </div>
+    <div class="row"><el-button @click="addBlog()">新增博文</el-button></div>
     <br />
     <el-table :data="blog">
       <el-table-column prop="blog_id" label="ID"> </el-table-column>
