@@ -1,11 +1,8 @@
 <template>
   <div>
-    <ShareList
-      :formData="formData"
-      @add="add()"
-      @edit="edit()"
-      @remove="remove()"
-    ></ShareList>
+    <div class="row"><el-button @click="add">新增分享</el-button></div>
+    <br />
+    <ShareList :formData="formData" @edit="edit" @remove="remove"></ShareList>
     <PagesButton
       :pageNum="page"
       :pages="pageTotal"
@@ -36,12 +33,19 @@
 import { Options, Vue } from "vue-class-component";
 import ShareList from "./list.vue";
 import { getShareList, updateShare, addShare, deleteShare } from "@/api/share";
-import { ElMessage, ElDialog } from "element-plus";
+import { ElMessage, ElDialog, ElButton } from "element-plus";
 import PagesButton from "@/components/Pagination.vue";
 import EditShareDialog from "@/views/Sharing/EditShareDialog.vue";
 
 @Options({
-  components: { ShareList, PagesButton, ElMessage, ElDialog, EditShareDialog },
+  components: {
+    ShareList,
+    PagesButton,
+    ElMessage,
+    ElDialog,
+    EditShareDialog,
+    ElButton,
+  },
   mounted() {
     if (this.$route.query.page != undefined) {
       this.page = this.$route.query.page;

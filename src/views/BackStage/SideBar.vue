@@ -1,10 +1,5 @@
 <template>
-  <el-menu
-    :default-openeds="['1', '1']"
-    default-active="/BackStage/BlogList"
-    router
-    active-text-color="#1976D2"
-  >
+  <el-menu router active-text-color="#1976D2">
     <el-submenu index="1">
       <template v-slot:title
         ><i class="el-icon-data-line"></i>博文管理</template

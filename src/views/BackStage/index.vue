@@ -1,7 +1,7 @@
 <template>
-  <el-container>
-    <el-aside style="width: 200px">
-      <side-bar></side-bar>
+  <el-container style="min-height: 600px">
+    <el-aside style="width: 200px;">
+      <SideBar style="width: 100%; height: 100%"></SideBar>
     </el-aside>
     <el-main><router-view></router-view></el-main>
   </el-container>

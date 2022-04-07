@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ShareList :formData="formData" @remove="remove()"></ShareList>
+    <ShareList :formData="formData" @remove="remove"></ShareList>
     <PagesButton
       :pageNum="page"
       :pages="pageTotal"

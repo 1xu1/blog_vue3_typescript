@@ -1,14 +1,25 @@
 <template>
   <div>
     <el-table :data="formData">
-      <el-table-column prop="share_id" label="ID"> </el-table-column>
-      <el-table-column prop="share_title" label="标题"> </el-table-column>
-      <el-table-column prop="share_label" label="标签"> </el-table-column>
-      <el-table-column prop="share_time" label="日期"> </el-table-column>
-      <el-table-column prop="share_like" label="喜欢数"> </el-table-column>
-      <el-table-column prop="share_desc" label="描述"> </el-table-column>
-      <el-table-column prop="share_url" label="链接"> </el-table-column>
-      <el-table-column prop="share_visibility" label="可见度"></el-table-column>
+      <el-table-column prop="share_id" label="ID" width="75px">
+      </el-table-column>
+      <el-table-column prop="share_title" label="标题" width="100px">
+      </el-table-column>
+      <el-table-column prop="share_label" label="标签" width="100px">
+      </el-table-column>
+      <el-table-column prop="share_time" label="日期" width="150px">
+      </el-table-column>
+      <el-table-column prop="share_like" label="喜欢数" width="75px">
+      </el-table-column>
+      <el-table-column prop="share_desc" label="描述" show-overflow-tooltip>
+      </el-table-column>
+      <el-table-column prop="share_url" label="链接" show-overflow-tooltip>
+      </el-table-column>
+      <el-table-column
+        prop="share_visibility"
+        label="可见度"
+        width="75px"
+      ></el-table-column>
       <el-table-column label="操作" width="150">
         <template v-slot="scope">
           <el-button

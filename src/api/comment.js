@@ -7,5 +7,5 @@ export const getBlogComment = (params) => {
   return request.get("/getBlogComment", params);
 };
 export const deleteComment = (params) => {
-  return request.get("/admin/deleteComment", params);
+  return request.post("/admin/deleteComment", params);
 };
