@@ -20,7 +20,7 @@
       :desc="item.share_desc"
       :label="item.share_label"
       :url="item.share_url"
-      :img="item.imgUrl"
+      :img="item.img_url"
     ></ShareCard>
   </div>
   <Pagination
