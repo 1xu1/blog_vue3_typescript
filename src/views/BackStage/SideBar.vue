@@ -30,6 +30,16 @@
         >
       </el-menu-item-group>
     </el-submenu>
+    <el-submenu index="4">
+      <template v-slot:title
+        ><i class="el-icon-data-line"></i>用户管理</template
+      >
+      <el-menu-item-group>
+        <el-menu-item index="/BackStage/UserList"
+          ><i class="el-icon-document"></i>用户列表</el-menu-item
+        >
+      </el-menu-item-group>
+    </el-submenu>
   </el-menu>
 </template>
 

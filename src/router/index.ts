@@ -77,6 +77,14 @@ const routes: Array<RouteRecordRaw> = [
           title: "分享列表",
         },
       },
+      {
+        path: "/BackStage/UserList",
+        name: "ShareList",
+        component: () => import("@/views/BackStage/UserManager/index.vue"),
+        meta: {
+          title: "用户列表",
+        },
+      },
     ],
   },
 ];
