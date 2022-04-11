@@ -1,7 +1,7 @@
 import axios from "axios";
 // import store from "@/store";
 const service = axios.create({
-  baseURL: "/api/",
+  baseURL: process.env.VUE_APP_BASE_URL + "/api/",
 });
 
 service.interceptors.request.use(
