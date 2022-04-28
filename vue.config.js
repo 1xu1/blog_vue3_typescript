@@ -17,7 +17,7 @@ module.exports = {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       .use(require("webpack-bundle-analyzer").BundleAnalyzerPlugin);
   },
-  publicPath: "./", //这个必须，引入静态资源需要从根路径引入，否则会找不到静态资源
+  publicPath: "/", //这个必须，引入静态资源需要从根路径引入，否则会找不到静态资源
   //生产环境配置
   devServer: {
     open: true, // 告诉 dev-server 在服务器启动后打开浏览器。 将其设置为 true 以打开默认浏览器

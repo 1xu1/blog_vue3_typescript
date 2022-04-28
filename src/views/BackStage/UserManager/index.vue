@@ -1,38 +1,23 @@
 <template>
   <div>
-    <div class="row"><el-button @click="add">新增分享</el-button></div>
-    <br />
-    <ShareList :formData="formData" @edit="edit" @remove="remove"></ShareList>
+    <ShareList
+      :formData="formData"
+      @add="handleUnblock"
+      @remove="handleBlock"
+    ></ShareList>
     <PagesButton
       :pageNum="page"
       :pages="pageTotal"
       @pageTrans="refresh"
     ></PagesButton>
   </div>
-  <el-dialog v-model="addShareDialog" title="添加新分享">
-    <slot><EditShareDialog :share="share"></EditShareDialog></slot>
-    <template #footer>
-      <span>
-        <el-button @click="addShareDialog = false">取消</el-button>
-        <el-button type="primary" @click="handleAddShare()">添加</el-button>
-      </span>
-    </template>
-  </el-dialog>
-  <el-dialog v-model="editShareDialog" title="编辑分享">
-    <slot><EditShareDialog :share="share"></EditShareDialog></slot>
-    <template #footer>
-      <span>
-        <el-button @click="editShareDialog = false">取消</el-button>
-        <el-button type="primary" @click="handleEdit()">确定</el-button>
-      </span>
-    </template>
-  </el-dialog>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import ShareList from "./list.vue";
-import { getShareList, updateShare, addShare, deleteShare } from "@/api/share";
+import { updateShare } from "@/api/share";
+import { getAllUsers, blockUser, unblockUser } from "@/api/user";
 import { ElMessage, ElDialog, ElButton } from "element-plus";
 import PagesButton from "@/components/Pagination.vue";
 import EditShareDialog from "@/views/Sharing/EditShareDialog.vue";
@@ -96,7 +81,7 @@ export default class index extends Vue {
       start: this.page,
       limit: this.limit,
     };
-    getShareList(param)
+    getAllUsers(param)
       .then((res: { data: { list: never[] } }) => {
         this.formData = res.data.list;
       })
@@ -108,38 +93,33 @@ export default class index extends Vue {
   public add(): void {
     this.addShareDialog = true;
   }
-  public handleAddShare(): void {
-    this.share = {
-      share_title: "",
-      share_label: "",
-      img_url: "",
-      share_desc: "",
-      share_url: "",
-      share_id: 0,
+  public handleUnblock(id: number): void {
+    const param = {
+      user_id: id,
     };
-    addShare(this.share)
+    blockUser(param)
       .then(() => {
-        ElMessage.success("添加成功");
+        ElMessage.success("解封成功");
         this.addShareDialog = false;
         this.getData();
       })
       .catch((err: any) => {
-        console.log(err);
-        ElMessage.error("添加失败");
+        ElMessage.error("解封失败");
+        ElMessage.error(err);
       });
   }
-  public remove(id: number): void {
+  public handleBlock(id: number): void {
     const param = {
-      share_id: id,
+      user_id: id,
     };
-    deleteShare(param)
+    unblockUser(param)
       .then(() => {
-        ElMessage.success("删除成功");
+        ElMessage.success("封禁成功");
         this.getData();
       })
       .catch((err: any) => {
-        console.log(err);
-        ElMessage.error("删除失败");
+        ElMessage.error("封禁失败");
+        ElMessage.error(err);
       });
   }
   public edit(share: never): void {

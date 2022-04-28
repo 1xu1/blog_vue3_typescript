@@ -13,3 +13,6 @@ declare module "@/assets/js/utils";
 declare module "@/api/share";
 declare module "@/api/user";
 declare module "@/api/comment";
+declare module "@/api/log";
+declare module "@/api/blog";
+declare module "@/utils/utils";

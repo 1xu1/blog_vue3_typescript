@@ -9,7 +9,7 @@ import axios from "axios";
 import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 
 // element-plus相关
-// import 'element-plus/lib/theme-chalk/index.css'
+import "element-plus/lib/theme-chalk/index.css";
 
 const app = createApp(App).use(store).use(router);
 

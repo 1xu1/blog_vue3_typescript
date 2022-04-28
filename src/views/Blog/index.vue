@@ -59,6 +59,8 @@ import BlogMenu from "./BlogMenu.vue";
 
 import { ElScrollbar } from "element-plus";
 
+import { addBlogLike } from "@/api/blog";
+
 // VMdEditor相关
 import VMdPreview from "@kangc/v-md-editor/lib/preview";
 import "@kangc/v-md-editor/lib/style/preview.css";
@@ -111,13 +113,19 @@ export default class Blog extends Vue {
   };
   public loading = true;
   public clickLike(): void {
-    axios
-      .post("/api/addBlogLike", {
-        blog_id: this.blog_id,
-      })
-      .then((res) => {
-        this.blog.blog_like++;
-      });
+    // 首先检查有无登陆
+    const userInfo = sessionStorage.getItem("userInfo");
+    let uid = 0;
+    if (userInfo) {
+      uid = JSON.parse(userInfo).user_id ? JSON.parse(userInfo).user_id : 0;
+    }
+    const param = {
+      user_id: uid,
+      blog_id: this.blog_id,
+    };
+    addBlogLike(param).then(() => {
+      this.blog.blog_like++;
+    });
   }
   //读取博文数据
   getData(): void {

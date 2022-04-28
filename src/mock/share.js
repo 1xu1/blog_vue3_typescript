@@ -67,7 +67,7 @@ const shareList = [
     imgUrl:'https://636f-codenav-8grj8px727565176-1256524210.tcb.qcloud.la/img/logo.png'
   },
   {
-    share_title: "have i been pwned?",
+    share_title: "Have I been pwned?",
     share_desc: "一个有意思的网站，用来测试你的账号是否已被泄漏",
     share_label: "#网站",
     share_url: "https://haveibeenpwned.com",

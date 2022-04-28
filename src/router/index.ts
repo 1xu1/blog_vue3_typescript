@@ -79,12 +79,36 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "/BackStage/UserList",
-        name: "ShareList",
+        name: "UserList",
         component: () => import("@/views/BackStage/UserManager/index.vue"),
         meta: {
           title: "用户列表",
         },
       },
+      {
+        path: "/BackStage/LogList",
+        name: "LogList",
+        component: () => import("@/views/BackStage/LogManager/index.vue"),
+        meta: {
+          title: "日志列表",
+        },
+      },
+      {
+        path: "/BackStage/LikeList",
+        name: "LikeList",
+        component: () => import("@/views/BackStage/LikeManager/index.vue"),
+        meta: {
+          title: "你的喜欢",
+        },
+      },
+      {
+        path: "/BackStage/UserConfig",
+        name: "UserConfig",
+        component: () => import("@/views/BackStage/UserInfo/index.vue"),
+        meta: {
+          title: "个人资料",
+        },
+      }
     ],
   },
 ];

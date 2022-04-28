@@ -129,6 +129,14 @@ export default class index extends Vue {
     addShare(this.share)
       .then(() => {
         ElMessage.success("添加成功");
+        this.editShareDialog = false;
+        this.share = {
+          share_title: "",
+          share_label: "",
+          img_url: "",
+          share_desc: "",
+          share_url: "",
+        };
       })
       .catch((err: any) => {
         console.log(err);
