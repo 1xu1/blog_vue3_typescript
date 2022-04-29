@@ -97,10 +97,9 @@ export default class index extends Vue {
     const param = {
       user_id: id,
     };
-    blockUser(param)
+    unblockUser(param)
       .then(() => {
         ElMessage.success("解封成功");
-        this.addShareDialog = false;
         this.getData();
       })
       .catch((err: any) => {
@@ -112,7 +111,7 @@ export default class index extends Vue {
     const param = {
       user_id: id,
     };
-    unblockUser(param)
+    blockUser(param)
       .then(() => {
         ElMessage.success("封禁成功");
         this.getData();

@@ -9,9 +9,10 @@
         show-overflow-tooltip
       >
         <template v-slot="scope">
-          <router-link :to="'/blog?' + formData[scope.$index].blog_id">{{
-            formData[scope.$index].blog_title
-          }}</router-link>
+          <router-link
+            :to="'/blog?blog_id=' + formData[scope.$index].blog_id"
+            >{{ formData[scope.$index].blog_title }}</router-link
+          >
         </template>
       </el-table-column>
       <el-table-column

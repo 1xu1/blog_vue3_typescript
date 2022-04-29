@@ -9,6 +9,7 @@
         prop="user_link"
         label="用户链接"
         width="150px"
+        :formatter="testNull"
         show-overflow-tooltip
       >
       </el-table-column>
@@ -44,13 +45,13 @@
           <el-button
             type="text"
             size="small"
-            @click="remove(formData[scope.$index].share_id)"
+            @click="remove(formData[scope.$index].user_id)"
             >封禁</el-button
           >
           <el-button
             type="text"
             size="small"
-            @click="add(formData[scope.$index].share_id)"
+            @click="add(formData[scope.$index].user_id)"
             >解禁</el-button
           >
         </template>
@@ -75,8 +76,8 @@ import { ElTable, ElTableColumn, ElButton, ElInput } from "element-plus";
 })
 export default class list extends Vue {
   // 添加事件
-  add(): void {
-    this.$emit("add");
+  add(id: number): void {
+    this.$emit("add", id);
   }
   // 编辑事件
   edit(share: never): void {

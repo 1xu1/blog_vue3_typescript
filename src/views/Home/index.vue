@@ -39,6 +39,9 @@ import LabelCloudCard from "./LabelCloudCard.vue";
 import PersonalCard from "./PersonalCard.vue";
 import LatestCommentCard from "./LatestCommentCard.vue";
 import ScrollToTop from "@/components/ScrollToTop.vue";
+
+import { getBlogList } from "@/api/blog";
+
 @Options({
   components: {
     Header,
@@ -67,7 +70,7 @@ import ScrollToTop from "@/components/ScrollToTop.vue";
 })
 export default class Home extends Vue {
   public page = 1;
-  public limit = 10;
+  public limit = 20;
   public blog = [];
   public loading = false;
   public pageTotal = 0;
@@ -82,20 +85,18 @@ export default class Home extends Vue {
   }
   //读取全部的博文数据
   public getData(): void {
-    axios
-      .get("/api/getBlogList", {
-        params: {
-          start: this.page,
-          limit: this.limit,
-          label: this.blog_label,
-        },
-      })
-      .then((res) => {
-        this.blog = res.data.data.list;
-        this.pageTotal = res.data.data.pages;
+    const params = {
+      start: this.page,
+      limit: this.limit,
+      label: this.blog_label,
+    };
+    getBlogList(params)
+      .then((res: any) => {
+        this.blog = res.data.list;
+        this.pageTotal = res.data.pages;
         this.loading = false;
       })
-      .catch((err) => {
+      .catch((err: never) => {
         console.log(err);
       });
   }
