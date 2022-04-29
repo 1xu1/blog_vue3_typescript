@@ -18,7 +18,7 @@
         </div>
         <div class="body">
           <div class="subheading not-slected">
-            <div class="item">
+            <div class="time-date">
               <span class="fas fa-calendar-alt"></span>
               <span v-time="item.blog_time" class="tag-content"></span>
             </div>
@@ -136,6 +136,11 @@ export default class Header extends Vue {
 
 .blog-card > .body > .subheading > .item {
   margin: 0px 10px 0px 10px;
+}
+
+.blog-card > .body > .subheading > .time-date {
+  margin: 0px 10px 0px 10px;
+  width: 120px;
 }
 
 .subheading {

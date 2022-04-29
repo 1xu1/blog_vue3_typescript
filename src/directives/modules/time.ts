@@ -1,4 +1,3 @@
-
 const Time = {
   //获取当前时间戳
   getUnix: function (): number {
@@ -29,29 +28,18 @@ const Time = {
     const date = new Date(time);
     const month = date.getMonth() + 1;
     const day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
-    const hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+    const hours =
+      date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
     const minutes =
       date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
     const seconds =
       date.getSeconds() < 10 ? "0" + date.getMinutes() : date.getMinutes();
-    return (
-      date.getFullYear() +
-      "-" +
-      month +
-      "-" +
-      day +
-      "  " +
-      hours +
-      ":" +
-      minutes +
-      ":" +
-      seconds
-    );
+    return date.getFullYear() + "-" + month + "-" + day;
   },
   getFormatTime: function (timestamp: string | number | Date): string {
     timestamp = new Date(timestamp);
     const now = this.getUnix();
-    const timestamp1 = timestamp.getTime()
+    const timestamp1 = timestamp.getTime();
     const today = this.getTodayUnix();
     const year = this.getYearUnix();
     const timer = (now - timestamp1) / 1000;
