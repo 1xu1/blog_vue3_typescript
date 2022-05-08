@@ -5,3 +5,6 @@ export const addBlogLike = (params) => {
 export const getBlogList = (params) => {
   return request.get("/getBlogList", params);
 };
+export const addBlog = (params) => {
+  return request.post("/admin/addBlog", params);
+};

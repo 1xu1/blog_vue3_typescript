@@ -3,6 +3,7 @@
     <!--评论回复功能块-->
     <div class="container">
       <input
+        v-if="!userInfo"
         class="comment_input"
         placeholder="昵称"
         maxlength="8"
@@ -10,6 +11,7 @@
       />
       <br />
       <input
+        v-if="!userInfo"
         class="comment_input"
         style="width: 40%"
         placeholder="个人站点(选填)"
@@ -24,7 +26,9 @@
           maxlength="250"
           v-model="commenter_content"
         ></textarea>
-        <button class="button_reply" @click="debounce(addComment)">回复</button>
+        <button class="button_reply" @click="debounce(addComment, 1000)">
+          回复
+        </button>
       </div>
     </div>
     <!--评论列表-->
@@ -40,8 +44,19 @@
       <div class="row" style="align-items: center">
         <div style="margin-left: 10px">#{{ item.floor }}</div>
         <!-- <img src="@/assets/img/default_head.png" class="head_icon" alt="..." /> -->
-        <span class="fas fa-user-circle head_icon"></span>
-        <span class="commenter_name"> {{ item.comment_user_name }}</span>
+        <img
+          v-if="item.user_head"
+          :src="item.user_head"
+          class="head_icon"
+          alt="..."
+        />
+        <span v-else class="fas fa-user-circle head_icon"></span>
+        <span v-if="item.user_name" class="commenter_name">
+          {{ item.user_name }}</span
+        >
+        <span v-else class="commenter_name">
+          {{ item.comment_user_name }}(游客)</span
+        >
         <span class="comment_sub" v-time="item.comment_time"></span>
         <span class="comment_sub">赞{{ item.comment_like }}</span>
         <a
@@ -70,6 +85,7 @@ import { IsURL, hasHttp } from "@/assets/js/utils";
   mounted() {
     this.blog_id = this.$route.query.blog_id;
     this.getComments();
+    this.userInfo = sessionStorage.getItem("userInfo");
   },
 })
 export default class Comment extends Vue {
@@ -81,6 +97,7 @@ export default class Comment extends Vue {
   public adding = false;
   public comment_date = new Date();
   public blog_id!: string;
+  public userInfo = "";
   //获取评论
   public getComments(): void {
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -120,21 +137,24 @@ export default class Comment extends Vue {
       }
     });
     //验证输入是否正确
-    if (this.commenter == "" || this.commenter == null) {
+    if (!this.userInfo && (this.commenter == "" || this.commenter == null)) {
       ElMessage.error("用户名输入有问题");
       return;
     }
     let link = this.commenter_link;
-    if (link == "" || link == null) {
-      link = "";
-    } else if (!IsURL(link)) {
-      ElMessage.error("网址输入有错误");
-      return;
-    } else {
-      link = hasHttp(link);
+    if (!this.userInfo) {
+      if (link == "" || link == null) {
+        link = "";
+      } else if (!IsURL(link)) {
+        ElMessage.error("网址输入有错误");
+        return;
+      } else {
+        link = hasHttp(link);
+      }
     }
+
     if (this.commenter_content == "" || this.commenter_content == null) {
-      ElMessage.error("回复内容有问题");
+      ElMessage.error("回复内容不得为空");
       return;
     }
     this.commenter_link = link;
@@ -153,6 +173,7 @@ export default class Comment extends Vue {
         this.comments_content.push(new_item);
         sessionStorage.commenter = this.commenter;
         sessionStorage.comment_link = this.commenter_link;
+        this.getComments();
       })
       .catch((err) => {
         ElMessage.error("诶呀，评论增加失败");

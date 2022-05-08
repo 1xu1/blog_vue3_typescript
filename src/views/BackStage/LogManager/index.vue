@@ -66,8 +66,9 @@ export default class index extends Vue {
       limit: this.limit,
     };
     getAllLog(param)
-      .then((res: { data: { list: never[] } }) => {
+      .then((res: any) => {
         this.formData = res.data.list;
+        this.pageTotal = res.data.pages;
       })
       .catch((err: any) => {
         ElMessage.error("获取失败");

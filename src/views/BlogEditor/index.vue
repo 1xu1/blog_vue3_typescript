@@ -34,6 +34,9 @@ import "@kangc/v-md-editor/lib/style/base-editor.css";
 import vuepressTheme from "@kangc/v-md-editor/lib/theme/vuepress.js";
 import "@kangc/v-md-editor/lib/theme/style/vuepress.css";
 import Prism from "prismjs";
+
+import { addBlog } from "@/api/blog";
+
 VMdEditor.use(vuepressTheme, {
   Prism,
 });
@@ -118,26 +121,18 @@ export default class BlogEditor extends Vue {
       });
   }
   addBlogByTemplate(): void {
-    axios
-      .post(
-        "/api/admin/addBlog",
-        {
-          blog_content: this.blog.blog_content,
-          blog_title: this.blog.blog_title,
-          blog_label: this.blog.blog_label,
-          blog_writer: "徐宇翔",
-        },
-        {
-          headers: {
-            Token: sessionStorage.login_stat,
-          },
-        }
-      )
-      .then((res) => {
+    const params = {
+      blog_content: "",
+      blog_title: "",
+      blog_label: "",
+      blog_writer_id: "1",
+    };
+    addBlog(params)
+      .then((res: any) => {
         ElMessage.success("新增成功");
         this.$router.replace("/blogEditor?blog_id=" + res.data);
       })
-      .catch((err) => {
+      .catch((err: any) => {
         console.log(err);
         ElMessage.error("新增失败");
       });

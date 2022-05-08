@@ -49,6 +49,9 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import PagesButton from "@/components/Pagination.vue";
+
+import { addBlog } from "@/api/blog";
+
 import {
   ElTable,
   ElTableColumn,
@@ -149,26 +152,18 @@ export default class list extends Vue {
   }
   //新增博文
   addBlog(): void {
-    axios
-      .post(
-        "/api/admin/addBlog",
-        {
-          blog_content: "",
-          blog_title: "",
-          blog_label: "",
-          blog_writer: "徐宇翔",
-        },
-        {
-          headers: {
-            Token: sessionStorage.login_stat,
-          },
-        }
-      )
-      .then((res) => {
+    const params = {
+      blog_content: "",
+      blog_title: "",
+      blog_label: "",
+      blog_writer_id: "1",
+    };
+    addBlog(params)
+      .then((res: any) => {
         ElMessage.success("新增成功");
         location.replace("/blogEditor?blog_id=" + res.data);
       })
-      .catch((err) => {
+      .catch((err: any) => {
         console.log(err);
         ElMessage.error("新增失败");
       });

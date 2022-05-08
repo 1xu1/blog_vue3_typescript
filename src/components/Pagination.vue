@@ -1,21 +1,37 @@
 <template>
   <div class="row">
-    <button
-      :disabled="pageNum == index"
-      class="item"
-      v-for="index of pages"
-      :key="index"
-      @click="pageTrans(index)"
-    >
-      {{ index }}
-    </button>
+    <div v-show="pageNum > 6">
+      <button class="item" @click="pageTrans(1)">1</button>
+      <span class="padItem">···</span>
+    </div>
+    <div :key="index" v-for="index of pages">
+      <button
+        :disabled="pageNum == index"
+        class="item"
+        v-show="Math.abs(index - pageNum) < 5"
+        :key="index"
+        @click="pageTrans(index)"
+      >
+        {{ index }}
+      </button>
+    </div>
+    <div v-show="pages != pageNum && pages > 9">
+      <span class="padItem">···</span>
+      <button class="item" @click="pageTrans(pages)">{{ pages }}</button>
+    </div>
+    <div v-show="pages > 9">
+      <input class="item-input" v-model="goToPage" />
+      <el-button @click="pageTrans(goToPage)">跳转页面</el-button>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import { ElButton } from "element-plus";
+
 @Options({
-  components: {},
+  components: { ElButton },
   props: {
     pages: {
       Number,
@@ -27,7 +43,9 @@ import { Options, Vue } from "vue-class-component";
   },
 })
 export default class Pagination extends Vue {
+  public goToPage = 1;
   public pageTrans(index: number): void {
+    this.goToPage = index;
     this.$emit("pageTrans", index);
   }
 }
@@ -37,9 +55,18 @@ export default class Pagination extends Vue {
   display: flex;
   justify-content: center;
   margin: 20px;
+  flex-direction: row;
+}
+.padItem {
+  color: #fff;
+}
+.item-input {
+  width: 35px;
+  height: 33px;
+  border-radius: 5px;
 }
 .item {
-  margin-left: 10px;
+  margin: 5px;
   width: 35px;
   height: 35px;
   background: #fff;

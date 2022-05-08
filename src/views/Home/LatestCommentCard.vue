@@ -10,7 +10,8 @@
         <span class="fas fa-comment"></span> 最新评论：
       </p>
       <div :key="item" v-for="item in comments" class="block">
-        <div class="user">{{ item.comment_user_name }} ：</div>
+        <div v-if="item.user_name" class="user">{{ item.user_name }} ：</div>
+        <div v-else class="user">{{ item.comment_user_name }}(游客) ：</div>
         <a
           style="margin-top: 5px"
           class="comment"

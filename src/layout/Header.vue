@@ -22,7 +22,7 @@
       @click="jumpToBackStage()"
       class="head-button"
       type="primary"
-      >后台管理
+      >{{ user_name }}后台管理
     </el-button>
 
     <!--登陆弹框-->
@@ -63,6 +63,8 @@ import { Options, Vue } from "vue-class-component";
 
 import { getUserInfo } from "@/api/user";
 
+import request from "@/api/request";
+
 import axios from "axios";
 import {
   ElInput,
@@ -94,6 +96,7 @@ export default class Header extends Vue {
   public login_stat = false;
   public loginVisible = false;
   public userInfo = null;
+  public user_name = "";
   public form = {
     login_id: "",
     login_pwd: "",
@@ -134,6 +137,7 @@ export default class Header extends Vue {
       .then((res: any) => {
         sessionStorage.setItem("userInfo", JSON.stringify(res.data));
         this.loginVisible = false;
+        this.user_name = res.data.user_name;
         ElMessage.success("登录成功");
         this.login_stat = true;
       })
@@ -162,6 +166,7 @@ export default class Header extends Vue {
   height: 70px;
   align-items: center;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  color: #ebeef5;
   /* border-bottom: 1px solid #dee2e6; */
   /* background: white; */
 }
@@ -179,7 +184,7 @@ export default class Header extends Vue {
 }
 .head-item {
   height: 100%;
-  color: #121416;
+  color: #ebeef5;
   margin-left: 5px;
   margin-right: 5px;
   text-decoration: none;

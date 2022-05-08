@@ -6,6 +6,9 @@ const service = axios.create({
 
 service.interceptors.request.use(
   (config) => {
+    if (sessionStorage.getItem("login_stat")) {
+      config.headers["Authorization"] = sessionStorage.getItem("login_stat");
+    }
     return config;
   },
   (error) => {
@@ -16,6 +19,9 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response) => {
     const res = response.data;
+    if (res.rspCode != 200) {
+      throw res.data;
+    }
     return res;
   },
   (error) => {
