@@ -1,5 +1,9 @@
 <template>
-  <img class="background" :src="imgUrl" />
+  <img
+    class="background"
+    :src="imgUrl"
+    :style="{ background: 'url({' + imgUrl + '}) no-repeat' }"
+  />
 </template>
 
 <script lang="ts">
@@ -32,9 +36,7 @@ import { Options, Vue } from "vue-class-component";
   //   raindropFx.start();
   // }
 })
-export default class Header extends Vue {
-  public img: unknown;
-}
+export default class Background extends Vue {}
 </script>
 <style lang="scss" scoped>
 .background {
@@ -43,5 +45,8 @@ export default class Header extends Vue {
   top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+  background-attachment: fixed;
 }
 </style>

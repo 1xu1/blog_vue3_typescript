@@ -89,7 +89,7 @@ export default class index extends Vue {
   // 编辑分享弹窗
   public editShareDialog = false;
   public page = 1;
-  public limit = 10;
+  public limit = 12;
   public pageTotal = 10;
   public shareList = [];
   public label = "";
