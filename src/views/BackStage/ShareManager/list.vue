@@ -43,7 +43,12 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 
-import { ElTable, ElTableColumn, ElButton, ElInput } from "element-plus/lib/components";
+import {
+  ElTable,
+  ElTableColumn,
+  ElButton,
+  ElInput,
+} from "element-plus/lib/components";
 
 @Options({
   components: { ElTable, ElTableColumn, ElButton, ElInput },

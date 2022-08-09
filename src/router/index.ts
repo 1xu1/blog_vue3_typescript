@@ -108,7 +108,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
           title: "个人资料",
         },
-      }
+      },
     ],
   },
 ];

@@ -15,7 +15,6 @@
           @handleAnchorClick="handleAnchorClick"
         ></blog-menu>
       </div>
-     
     </div>
   </div>
 </template>

@@ -80,7 +80,7 @@ import {
     ElInput,
     ElForm,
     ElFormItem,
-    ElDialog
+    ElDialog,
   },
   mounted() {
     const loginState = sessionStorage.getItem("login_stat");
