@@ -73,15 +73,14 @@ import {
   ElButton,
   ElDialog,
   ElMessage,
-} from "element-plus";
+} from "element-plus/lib/components";
 @Options({
   components: {
     ElButton,
     ElInput,
     ElForm,
     ElFormItem,
-    ElDialog,
-    ElMessage,
+    ElDialog
   },
   mounted() {
     const loginState = sessionStorage.getItem("login_stat");

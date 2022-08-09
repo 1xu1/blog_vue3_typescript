@@ -10,7 +10,7 @@
 //引入组件
 import BuyMeCofee from "@/components/BuyMeCofee.vue";
 import { Options, Vue } from "vue-class-component";
-import { ElSwitch } from "element-plus";
+import { ElSwitch } from "element-plus/lib/components";
 @Options({
   components: { BuyMeCofee, ElSwitch },
 })

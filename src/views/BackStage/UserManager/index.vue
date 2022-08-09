@@ -18,7 +18,7 @@ import { Options, Vue } from "vue-class-component";
 import ShareList from "./list.vue";
 import { updateShare } from "@/api/share";
 import { getAllUsers, blockUser, unblockUser } from "@/api/user";
-import { ElMessage, ElDialog, ElButton } from "element-plus";
+import { ElMessage, ElDialog, ElButton } from "element-plus/lib/components";
 import PagesButton from "@/components/Pagination.vue";
 import EditShareDialog from "@/views/Sharing/EditShareDialog.vue";
 
@@ -26,7 +26,6 @@ import EditShareDialog from "@/views/Sharing/EditShareDialog.vue";
   components: {
     ShareList,
     PagesButton,
-    ElMessage,
     ElDialog,
     EditShareDialog,
     ElButton,

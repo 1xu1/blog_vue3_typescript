@@ -31,13 +31,13 @@
 import { Options, Vue } from "vue-class-component";
 import {
   ElMenu,
-  ElSubmenu,
+  ElSubMenu,
   ElMenuItem,
   ElMenuItemGroup,
   ElMessage,
-} from "element-plus";
+} from "element-plus/lib/components";
 @Options({
-  components: { ElMenu, ElSubmenu, ElMenuItem, ElMenuItemGroup },
+  components: { ElMenu, ElSubMenu, ElMenuItem, ElMenuItemGroup },
   mounted() {
     let userInfo = sessionStorage.getItem("userInfo");
     if (userInfo) {

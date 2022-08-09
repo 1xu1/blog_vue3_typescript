@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import { ElBadge } from "element-plus";
+import { ElBadge } from "element-plus/lib/components";
 @Options({
   components: { ElBadge },
   props: {

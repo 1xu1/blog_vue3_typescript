@@ -27,7 +27,7 @@
 <script lang="ts">
 import axios from "axios";
 import { Options, Vue } from "vue-class-component";
-import { ElMessage } from "element-plus";
+import { ElMessage } from "element-plus/lib/components";
 // VMdEditor相关
 import VMdEditor from "@kangc/v-md-editor";
 import "@kangc/v-md-editor/lib/style/base-editor.css";

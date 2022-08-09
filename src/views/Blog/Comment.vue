@@ -78,10 +78,10 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import axios from "axios";
-import { ElMessage } from "element-plus";
+import { ElMessage } from "element-plus/lib/components";
 import { IsURL, hasHttp } from "@/assets/js/utils";
 @Options({
-  components: { ElMessage },
+  components: {},
   mounted() {
     this.blog_id = this.$route.query.blog_id;
     this.getComments();

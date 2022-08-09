@@ -21,7 +21,7 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 
-import { ElInput, ElForm, ElFormItem } from "element-plus";
+import { ElInput, ElForm, ElFormItem } from "element-plus/lib/components";
 
 @Options({
   components: { ElInput, ElForm, ElFormItem },

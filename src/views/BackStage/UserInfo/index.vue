@@ -47,7 +47,7 @@ import {
   ElRadioGroup,
   ElButton,
   ElMessage,
-} from "element-plus";
+} from "element-plus/lib/components";
 @Options({
   components: {
     ElInput,

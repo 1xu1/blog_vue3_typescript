@@ -43,7 +43,7 @@
 <script lang="ts">
 import { toRaw } from "@vue/reactivity";
 import { Options, Vue } from "vue-class-component";
-import { ElCheckbox } from "element-plus";
+import { ElCheckbox } from "element-plus/lib/components";
 @Options({
   components: { ElCheckbox },
   mounted() {

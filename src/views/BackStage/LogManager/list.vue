@@ -31,7 +31,7 @@ import { Options, Vue } from "vue-class-component";
 
 import { dateformat } from "@/utils/utils";
 
-import { ElTable, ElTableColumn, ElButton, ElInput } from "element-plus";
+import { ElTable, ElTableColumn, ElButton, ElInput } from "element-plus/lib/components";
 
 @Options({
   components: { ElTable, ElTableColumn, ElButton, ElInput },

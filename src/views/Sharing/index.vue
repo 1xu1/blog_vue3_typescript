@@ -60,7 +60,7 @@ import {
   ElInput,
   ElMessage,
   ElButton,
-} from "element-plus";
+} from "element-plus/lib/components";
 
 @Options({
   components: {
@@ -73,7 +73,6 @@ import {
     ElDialog,
     ElInput,
     EditShareDialog,
-    ElMessage,
     ElButton,
     ElDropdownMenu,
   },

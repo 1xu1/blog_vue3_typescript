@@ -57,7 +57,7 @@ import Comment from "./Comment.vue";
 import BlogHead from "./BlogHead.vue";
 import BlogMenu from "./BlogMenu.vue";
 
-import { ElScrollbar } from "element-plus";
+import { ElScrollbar } from "element-plus/lib/components";
 
 import { addBlogLike } from "@/api/blog";
 

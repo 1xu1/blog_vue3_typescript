@@ -58,7 +58,7 @@ import {
   ElButton,
   ElMessage,
   ElInput,
-} from "element-plus";
+} from "element-plus/lib/components";
 import axios from "axios";
 @Options({
   components: { PagesButton, ElTable, ElTableColumn, ElButton, ElInput },

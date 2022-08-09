@@ -13,12 +13,12 @@
 import { Options, Vue } from "vue-class-component";
 import ShareList from "./list.vue";
 import { getAllComment, deleteComment } from "@/api/comment";
-import { ElMessage, ElDialog } from "element-plus";
+import { ElMessage, ElDialog } from "element-plus/lib/components";
 import PagesButton from "@/components/Pagination.vue";
 import EditShareDialog from "@/views/Sharing/EditShareDialog.vue";
 
 @Options({
-  components: { ShareList, PagesButton, ElMessage, ElDialog, EditShareDialog },
+  components: { ShareList, PagesButton, ElDialog, EditShareDialog },
   mounted() {
     if (this.$route.query.page != undefined) {
       this.page = this.$route.query.page;

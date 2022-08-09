@@ -13,7 +13,7 @@
 import { Options, Vue } from "vue-class-component";
 import ShareList from "./list.vue";
 import { getAllLog } from "@/api/log";
-import { ElMessage, ElDialog, ElButton } from "element-plus";
+import { ElMessage, ElDialog, ElButton } from "element-plus/lib/components";
 import PagesButton from "@/components/Pagination.vue";
 import EditShareDialog from "@/views/Sharing/EditShareDialog.vue";
 
@@ -21,7 +21,6 @@ import EditShareDialog from "@/views/Sharing/EditShareDialog.vue";
   components: {
     ShareList,
     PagesButton,
-    ElMessage,
     ElDialog,
     EditShareDialog,
     ElButton,

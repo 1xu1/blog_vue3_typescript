@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import { ElButton } from "element-plus";
+import { ElButton } from "element-plus/lib/components";
 
 @Options({
   components: { ElButton },

@@ -14,7 +14,7 @@ import Footer from "@/components/Footer.vue";
 import Header from "@/layout/Header.vue";
 import SideBar from "./SideBar.vue";
 import { Options, Vue } from "vue-class-component";
-import { ElContainer, ElAside, ElMain } from "element-plus";
+import { ElContainer, ElAside, ElMain } from "element-plus/lib/components";
 @Options({
   components: { Footer, Header, SideBar, ElContainer, ElAside, ElMain },
 })

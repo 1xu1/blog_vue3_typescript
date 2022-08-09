@@ -41,5 +41,5 @@ module.exports = {
         prependData: `@import "./src/style/color.scss";`,
       },
     },
-  },
+  }
 };
